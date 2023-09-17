@@ -1,12 +1,7 @@
-@import 'colors.css';
+@import 'generales.css';
 
-/* Genéricos */
-
-*{margin:0;padding:0;} /* Configuración inicial: borra los margin y padding que vienen por defecto*/
-
+/* Genéricos en esta página */
 .footer a {
-    font-weight: 600;
-    text-decoration: none;
     color: var(--oscuro);
     font-size: 0.85rem;
 }
@@ -60,7 +55,7 @@ footer div{
     justify-content: center;
 }
 
-/* Independientes */
+/* Elementos individuales: img, logo-azul, elementos con id */
 .footer-informacion a{margin-right: 30px;}
 .footer-logo{height: 65%;}
 .footer-ico{height: 1.6rem;margin-left: 15px;}
