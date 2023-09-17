@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/logos/navbar-logo.png";
+import logo from "../assets/logos/logo-white.png";
 import "../styles/Navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser , faHouse, faCircle } from "@fortawesome/free-solid-svg-icons";
