@@ -4,7 +4,8 @@ import home from "../assets/icons/icono-home.svg";
 import profile from "../assets/icons/icono-usuario.svg";
 // import punto from "../assets/icons/icono-punto.svg";
 import "../styles/Navbar.css";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHippo } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
     return (
@@ -17,6 +18,8 @@ function Navbar() {
                 </div>
                 <div className="nav-option" id="option-profile">
                     <img src={profile} alt="profile" className="icono-option"></img>
+                    <FontAwesomeIcon icon={faHippo} />
+
                     {/* <img src={punto} alt="punto" className="icono-punto"></img> */}
                 </div>
             </div>          
