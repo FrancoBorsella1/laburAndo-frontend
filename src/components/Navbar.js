@@ -1,26 +1,22 @@
 import React from "react";
 import logo from "../assets/logos/navbar-logo.png";
-import home from "../assets/icons/icono-home.svg";
-import profile from "../assets/icons/icono-usuario.svg";
 // import punto from "../assets/icons/icono-punto.svg";
 import "../styles/Navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHippo } from "@fortawesome/free-solid-svg-icons";
+import { faUser , faHouse, faCircle } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
     return (
         <nav className="navbar">
-            <img src={logo} alt="logo" className="logo"></img>
+            <img src={logo} alt="logo" className="navbar-logo"></img>
             <div className="navbar-options">
-                <div className="nav-option" id="option-home">
-                    <img src={home} alt="home" className="icono-option"></img>
-                    {/* <img src={punto} alt="punto" className="icono-punto"></img> */}
+                <div className="navbar-option">
+                    <FontAwesomeIcon icon={faHouse} className="navbar-icon navbar-house"/>
+                    <FontAwesomeIcon icon={faCircle} className="navbar-icon navbar-circle"/>
                 </div>
-                <div className="nav-option" id="option-profile">
-                    <img src={profile} alt="profile" className="icono-option"></img>
-                    <FontAwesomeIcon icon={faHippo} />
-
-                    {/* <img src={punto} alt="punto" className="icono-punto"></img> */}
+                <div className="navbar-option">
+                    <FontAwesomeIcon icon={faUser} className="navbar-icon navbar-user"/>
+                    <FontAwesomeIcon icon={faCircle} className="navbar-icon navbar-circle"/>
                 </div>
             </div>          
             <a href="#cerrarsesion">Cerrar sesión</a> {/*Agregar el link hacia la página del login*/}

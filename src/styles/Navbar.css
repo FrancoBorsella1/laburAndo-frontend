@@ -1,7 +1,9 @@
 @import 'colors.css';
 
 /* Genericos */
+
 *{margin:0;padding:0;} /* Configuración inicial: borra los margin y padding que vienen por defecto*/
+
 a {
     font-weight: 600;
     text-decoration: none;
@@ -9,7 +11,6 @@ a {
 }
 
 /* contenedores */
-
 .navbar {
     height: 70px;
     background-color: var(--primary);
@@ -21,35 +22,27 @@ a {
 
 .navbar-options{
     display: flex;
+    height: 100%;
 }
 
-.navbar-options .nav-option{
+.navbar-option{
     display: flex;
     width: 4rem;
-    justify-content: space-between;
+    margin-top: 12px;
+    justify-content: space-around;
     flex-direction: column;
-    background: blueviolet;
 }
 
 /* Elementos independientes */
-.logo {
+
+.navbar-logo {
     height: 110px;
-
 }
 
-.navbar-options .icono-option{
-    height: 40px;
+.navbar-icon {
+    color: var(--claro);
+    height: 25px;
 }
 
-
-.navbar-options .icono-punto{
-    height: 7px;
-    width: 7px;
-    align-self: center;
-    color: aqua;
-}
-
-img{
-    color: aqua;
-}
-
+.navbar-circle {height: 6px;}
+.navbar-user{color: var(--inactive2);}
