@@ -1,0 +1,55 @@
+@import 'colors.css';
+
+/* Genericos */
+*{margin:0;padding:0;} /* Configuración inicial: borra los margin y padding que vienen por defecto*/
+a {
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--claro);
+}
+
+/* contenedores */
+
+.navbar {
+    height: 70px;
+    background-color: var(--primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.navbar-options{
+    display: flex;
+}
+
+.navbar-options .nav-option{
+    display: flex;
+    width: 4rem;
+    justify-content: space-between;
+    flex-direction: column;
+    background: blueviolet;
+}
+
+/* Elementos independientes */
+.logo {
+    height: 110px;
+
+}
+
+.navbar-options .icono-option{
+    height: 40px;
+}
+
+
+.navbar-options .icono-punto{
+    height: 7px;
+    width: 7px;
+    align-self: center;
+    color: aqua;
+}
+
+img{
+    color: aqua;
+}
+
