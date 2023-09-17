@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Ubuntu:wght@500&display=swap');
+
+:root{
+    --terciary: #FBFFF1; /*Beige 60%*/
+    --secundary: #B4C5E4; /*Celeste 30%*/
+    --primary: #3066BE; /*Azul 10%*/
+    --inactive:#898989; /*Gris. lineas, placeholder, texto inactivo*/
+    --inactive2: #6E95D3; /*Celeste oscuro, icono navbar inactivo*/
+    --extra: #C9CCC1; /*Para generar contraste o arreglar: Footer*/
+    --claro: #FFFFFF; /**/
+    --oscuro: #000000;
+}
+
+*{
+    font-family: 'Inter', sans-serif, Arial, Helvetica, sans-serif;
+}

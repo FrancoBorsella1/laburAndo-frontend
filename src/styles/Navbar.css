@@ -1,0 +1,48 @@
+@import 'colors.css';
+
+/* Genericos */
+
+*{margin:0;padding:0;} /* Configuración inicial: borra los margin y padding que vienen por defecto*/
+
+a {
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--claro);
+}
+
+/* contenedores */
+.navbar {
+    height: 70px;
+    background-color: var(--primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.navbar-options{
+    display: flex;
+    height: 100%;
+}
+
+.navbar-option{
+    display: flex;
+    width: 4rem;
+    margin-top: 12px;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+/* Elementos independientes */
+
+.navbar-logo {
+    height: 110px;
+}
+
+.navbar-icon {
+    color: var(--claro);
+    height: 25px;
+}
+
+.navbar-circle {height: 6px;}
+.navbar-user{color: var(--inactive2);}
