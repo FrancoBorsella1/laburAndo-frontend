@@ -1,12 +1,7 @@
-@import 'colors.css';
+@import 'generales.css';
 
 /* Genericos */
-
-*{margin:0;padding:0;} /* Configuración inicial: borra los margin y padding que vienen por defecto*/
-
-a {
-    font-weight: 600;
-    text-decoration: none;
+nav a {
     color: var(--claro);
 }
 

@@ -1,12 +1,7 @@
-@import 'colors.css';
+@import 'generales.css';
 
-/* Genéricos */
-
-*{margin:0;padding:0;} /* Configuración inicial: borra los margin y padding que vienen por defecto*/
-
-a {
-    font-weight: 600;
-    text-decoration: none;
+/* Genéricos en esta página */
+.footer a {
     color: var(--oscuro);
     font-size: 0.85rem;
 }
@@ -14,9 +9,15 @@ a {
 /* Contenedores */
 
 .footer{/* incluye el circulito gris para abrir y cerrar */
-    margin-top: 60%;
-    position: sticky;
+    /* margin-top: 100%; */
+    position: fixed;
+    width: 100%;
     bottom: 0;
+    transform: translateY(70%);
+    transition: transform 0.3s ease-in-out;
+}
+.footer.visible {
+    transform: translateY(0);
 }
 
 footer{
@@ -54,7 +55,7 @@ footer div{
     justify-content: center;
 }
 
-/* Independientes */
+/* Elementos individuales: img, logo-azul, elementos con id */
 .footer-informacion a{margin-right: 30px;}
 .footer-logo{height: 65%;}
 .footer-ico{height: 1.6rem;margin-left: 15px;}
@@ -65,4 +66,7 @@ footer div{
     height: 20px;
     margin:0;padding: 0;
 }
+
+
+
 

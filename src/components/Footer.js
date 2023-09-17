@@ -1,5 +1,5 @@
-import React from "react";
-import logo from "../assets/logos/footer-logo.png";
+import React, { useState } from "react";
+import logo from "../assets/logos/logo-original.png";
 import icoFacebook from "../assets/icons/footer-facebook.png";
 import icoInstagram from "../assets/icons/footer-instagram.png";
 import "../styles/Footer.css";
@@ -7,9 +7,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfo } from "@fortawesome/free-solid-svg-icons";
 
 function Footer() {
+    const [isVisible, setIsVisible] = useState(false);
+
+    const toggleFooter = () => {
+        setIsVisible(!isVisible);
+    };
     return (
-        <div className="footer">
-            <div className="openClose-footer">
+        <div className={`footer ${isVisible ? "visible" : ""}`} onMouseEnter={toggleFooter} onMouseLeave={toggleFooter}>
+            <div className="openClose-footer" >
                 <div className="footer-circle">
                     <FontAwesomeIcon icon={faInfo} className="footer-openclose-icon"/>
                 </div>
