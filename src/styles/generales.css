@@ -67,3 +67,10 @@ button {
     height: 0.5px;
     background-color: var(--oscuro);
 }
+
+article {
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

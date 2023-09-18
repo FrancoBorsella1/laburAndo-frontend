@@ -1,0 +1,51 @@
+@import 'generales.css';
+
+/* Generales */
+
+/* Contenddores */
+#contenedor-publicacion{
+    height: 170px; /*header:50px + content:120px*/
+    max-width: 550px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+#contenedor-publicacion .publicacion-header{
+    background-color: var(--secundary);
+    height: 50px;
+    border-radius: 50px 50px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+}
+
+
+#contenedor-publicacion .publicacion-content{
+    background-color: var(--claro);
+    height: 120px;
+    border-radius: 0 0 50px 50px;
+    padding: 0 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+}
+
+/* Elementos independientes */
+#contenedor-publicacion span {
+    font-weight: bold;
+}
+#contenedor-publicacion .publicacion-header p {
+    font-weight: bold;
+    font-size: 18px;
+}
+#contenedor-publicacion .publicacion-content p {
+    text-align: left;
+    width: 100%;
+    margin-top: 9px;
+}
+#contenedor-publicacion #publicacion-icono{
+    height: 1.4rem;
+    cursor: pointer;
+    margin-top: 9px;
+}
