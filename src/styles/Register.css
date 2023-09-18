@@ -1,3 +1,65 @@
-h1 {
-    color: red;
+@import 'generales.css';
+
+/* Genéricos para toda esta página */
+
+#contenedor-registro a{
+    color: var(--primary);
+    font-size: 0.85rem;
 }
+
+#contenedor-registro h1 {
+    font-family: 'League Spartan', sans-serif;
+    font-weight: bold;
+    width: 100%;
+    font-size: 3.4rem;
+}
+#contenedor-registro h2 {
+    margin-top: 55px;
+}
+
+/* Contenedores */
+#contenedor-registro{
+    height: 100vh;
+    text-align: center;
+}
+    #contenedor-registro .contenedor-logo {
+        width: 550px;
+    }
+    #contenedor-registro .formulario-registro {
+        width: 370px;
+        height: 500px;
+    }
+        .contenedor-inputs{
+            margin: 0px 30px;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+            .contenedor-inputs a{
+                margin-top: 10px;
+            }
+            .contenedor-inputs button{
+                margin-top: 20px;
+            }
+            .contenedor-inputs input {
+                margin-top: 15px;
+                padding: 0px 15px;
+            }
+
+    #contenedor-registro .contenedor-links {
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+/* Independientes */
+#contenedor-registro .linea-horizontal { /* Los estilos generales en el generales.css */
+    width: 100%;
+    margin-top: 30px;
+}
+
