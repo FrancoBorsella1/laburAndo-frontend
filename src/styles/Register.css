@@ -2,30 +2,30 @@
 
 /* Genéricos para toda esta página */
 
-#contenedor-login a{
+#contenedor-registro a{
     color: var(--primary);
     font-size: 0.85rem;
 }
 
-#contenedor-login h1 {
+#contenedor-registro h1 {
     font-family: 'League Spartan', sans-serif;
     font-weight: bold;
     width: 100%;
     font-size: 3.4rem;
 }
-#contenedor-login h2 {
+#contenedor-registro h2 {
     margin-top: 55px;
 }
 
 /* Contenedores */
-#contenedor-login{
+#contenedor-registro{
     height: 100vh;
     text-align: center;
 }
-    #contenedor-login .contenedor-logo {
+    #contenedor-registro .contenedor-logo {
         width: 550px;
     }
-    #contenedor-login .formulario-login {
+    #contenedor-registro .formulario-registro {
         width: 370px;
         height: 500px;
     }
@@ -48,7 +48,7 @@
                 padding: 0px 15px;
             }
 
-    #contenedor-login .contenedor-links {
+    #contenedor-registro .contenedor-links {
         height: 100px;
         display: flex;
         flex-direction: column;
@@ -58,7 +58,7 @@
 
 
 /* Independientes */
-#contenedor-login .linea-horizontal { /* Los estilos generales en el generales.css */
+#contenedor-registro .linea-horizontal { /* Los estilos generales en el generales.css */
     width: 100%;
     margin-top: 30px;
 }
