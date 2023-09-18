@@ -29,7 +29,8 @@
         width: 370px;
         height: 500px;
     }
-        .contenedor-inputs{
+    
+        #contenedor-registro.contenedor-inputs{
             margin: 0px 30px;
             margin-top: 20px;
             display: flex;
