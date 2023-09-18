@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 function Register() {
     return (
         <div>
-            <main id="contenedor-regitro">
+            <main id="contenedor-registro">
                 <div className='contenedor-logo'>
                     <img src={logo} alt='Logo' className='logo-grande'></img>
                     <h1>Tu próximo laburo está a un click de distancia.</h1>
