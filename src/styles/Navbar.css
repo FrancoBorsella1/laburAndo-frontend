@@ -16,7 +16,6 @@ nav a {
 }
 
 .navbar-options{
-    display: flex;
     height: 100%;
 }
 
@@ -29,9 +28,10 @@ nav a {
 }
 
 /* Elementos independientes */
-
-.navbar-logo {
-    height: 50px;
+#cerrar-sesion, .navbar-options, .navbar-logo{
+    display: flex;
+    justify-content: center;
+    width: 8rem;
 }
 
 .navbar-icon {
