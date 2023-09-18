@@ -1,0 +1,67 @@
+@import 'generales.css';
+
+/* Genéricos */
+
+#componente-header button,#componente-header select {width: 150px;}
+#componente-header select, #componente-header input{
+    cursor: pointer;
+    padding-left: 12px;
+}
+#componente-header p {
+    font-size: 18px;
+    font-weight: bold;
+}
+#componente-header button {cursor: pointer;}
+#componente-header option {
+    border: none;
+    border-radius: 50px;
+}
+
+
+/* Contenedores */
+#componente-header {
+    height: 200px;
+    background-color: var(--secundary);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2)
+}
+
+#componente-header .contenedor-publicacion, #componente-header .contenedor-busqueda{
+    height: 100%;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0 20px;
+}
+
+
+
+
+/* Elementos individuales */
+
+#componente-header .linea-vertical {
+    height: 165px;
+    width: 0.5px;
+    background-color: var(--oscuro);
+}
+
+#componente-header .publicacion, #componente-header .formulario-busqueda{
+    width: 100%;
+    height: 45px;
+    margin-top: 20px;
+    box-shadow: none;
+}
+#componente-header .formulario-busqueda {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+#componente-header .publicacion{
+    background-color: var(--claro);
+    cursor: pointer;
+}

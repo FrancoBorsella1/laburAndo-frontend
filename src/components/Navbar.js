@@ -18,7 +18,7 @@ function Navbar() {
                     <FontAwesomeIcon icon={faCircle} className="navbar-icon navbar-circle"/>
                 </div>
             </div>          
-            <a href="#cerrarsesion">Cerrar sesión</a> {/*Agregar el link hacia la página del login*/}
+            <a href="#cerrarsesion" id="cerrar-sesion">Cerrar sesión</a> {/*Agregar el link hacia la página del login*/}
         </nav>
     );
 };
