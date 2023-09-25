@@ -1,136 +1,77 @@
 @import 'generales.css';
+@import 'modal.css';
 
-.modalBackground {
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(8, 8, 8, 0.315);
-    position: fixed;
-    display: flex;
-    justify-content: center;align-items: center;
-}
-    .contenedor-modal {
-      background-color: white;
-      width: 650px; height: 500px;
-      box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 10px;
-      border-radius: 50px;
-      display: flex;
-      flex-direction: column;
-    }
-      /* MODAL HEADER */
-      .contenedor-modal .modal-header {
-        background-color: var(--secundary);
-        height: 50px;
-        border-radius: 50px 50px 0 0;
-        font-weight: bold;
-        display: flex;
+  
+    /*---------- MODAL BODY ------------*/
+
+      /* detalles */
+      #detalles-publicacion .modal-body .contenedor-detalles {
+        display:flex;
+        flex-direction: column;
         justify-content: space-between;
-        align-items: center;
-        padding: 0 30px;
+        height: 100%; width: 430px;
       }
-      .contenedor-modal .modal-header p {
-        max-width: 500px;
+      #detalles-publicacion .modal-body .contenedor-detalles p {
+        word-wrap: break-word;
+      }
+      #detalles-publicacion .modal-body .contenedor-detalles .detalles-content {
+        display: flex;
+        align-items: left;
+        justify-content: center;
+        flex-direction: column;
+        padding: 10px;
+      }
+          
+
+      /* perfil */
+      #detalles-publicacion .modal-body .contenedor-detalles-perfil {
+        width: 220px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-left: 1px solid var(--secundary);
+      }
+      #detalles-publicacion .modal-body .contenedor-detalles-perfil .perfil-nombre {
+        font-weight: bold;
+        margin-bottom: 40px; margin-top: 5px;
+        text-align: center;
+        width: 88%;
+        max-height: 130px;
+        font-size: 1.2rem;
         overflow: hidden;
-        white-space: nowrap;
+        overflow-y: auto;
         text-overflow: ellipsis;
       }
-      .contenedor-modal .modal-header button {
-        color: var(--inactive2);
-        width: auto;
-      }
-
-      /* MODAL BODY */
-      .contenedor-modal .modal-body {
+      #detalles-publicacion .modal-body .contenedor-detalles-perfil .perfil-foto{
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        overflow: hidden;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 1rem;
-        height: 100%;
+        background-color: var(--secundary);
       }
-          /* detalles */
-          .contenedor-modal .modal-body .contenedor-detalles {
-            display:flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%; width: 430px;
-          }
-          .contenedor-modal .modal-body .contenedor-detalles p {
-            word-wrap: break-word;
-          }
-          .contenedor-modal .modal-body .contenedor-detalles .detalles-content {
-            display: flex;
-            align-items: left;
-            justify-content: center;
-            flex-direction: column;
-            padding: 10px;
-          }
-              
-          /* perfil */
-          .contenedor-modal .modal-body .contenedor-detalles-perfil {
-            width: 220px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border-left: 1px solid var(--secundary);
-          }
-          .contenedor-modal .modal-body .contenedor-detalles-perfil .perfil-nombre {
-            font-weight: bold;
-            margin-bottom: 40px; margin-top: 5px;
-            text-align: center;
-            width: 88%;
-            max-height: 130px;
-            font-size: 1.2rem;
-            overflow: hidden;
-            overflow-y: auto;
-            text-overflow: ellipsis;
-          }
-          .contenedor-modal .modal-body .contenedor-detalles-perfil .perfil-foto{
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: var(--secundary);
-          }
-          .contenedor-modal .modal-body .contenedor-detalles-perfil .perfil-numero{
-            width: 90%;
-            display: flex;
-            justify-content: center;
-          }
-
-      /* MODAL FOOTER */
-      .contenedor-modal .modal-footer {
-          flex: 13%;
-          display: flex;
-          justify-content: right;
-          align-items: center;
-          white-space: normal;
-          padding-right: 30px;
-          border-top: 1px solid var(--secundary);
+      #detalles-publicacion .modal-body .contenedor-detalles-perfil .perfil-numero{
+        width: 90%;
+        display: flex;
+        justify-content: center;
       }
-
+      #detalles-publicacion .modal-footer{
+        justify-content: right;
+      } 
 
   /* independientes */
-  .contenedor-modal #cerrar-modal {
-    background-color: transparent;
-    border: none;
-    font-size: 25px;
-    cursor: pointer;
-  }
-  .contenedor-modal span {
+  #detalles-publicacion span, #detalles-publicacion #fecha-publicacion {
     font-weight: bold;
   }
-  .contenedor-modal #fecha {
-    font-weight: bold;
-  }
-  .contenedor-modal .modal-body img {
+  #detalles-publicacion .contenedor-detalles-perfil img { /*foto de perfil en detalles*/
     max-width: 100%;
     height: auto;
   }
-  .contenedor-modal a {
+  #detalles-publicacion a {
     margin-top: 15px;
   }
 
