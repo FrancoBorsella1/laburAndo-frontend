@@ -1,0 +1,77 @@
+@import 'generales.css';
+
+/* --------- Estructura: maquetado de divs, etc --------- */
+#contenedor-perfil{
+    height: 84vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; align-items: center;
+}
+
+#tarjeta-perfil {
+    max-height: 350px; width: 300px;
+    background-color: var(--claro);
+    border-radius: 30px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; align-items: center;
+}
+
+#tarjeta-perfil .perfil-foto {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;align-items: center;
+    background-color: var(--secundary);
+    margin-top: -50px;
+}
+#tarjeta-perfil .perfil-informacion{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;align-items: center;
+    flex: auto;
+    padding: 25px 0;
+    
+}
+
+/* --------- Generales: más de 1 elemento --------- */
+
+#tarjeta-perfil .perfil-informacion .perfil-nombre{
+    color: var(--primary);
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    max-height: 80px;
+    width: 230px;
+    font-size: 1.3rem;
+    overflow: hidden;
+    overflow-y: auto;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid var(--secundary);
+}
+
+#tarjeta-perfil .perfil-informacion div{
+   margin: 10px 0;
+   width: 230px;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   text-align: center;
+}
+
+
+/* --------- Independientes: 1 elemento --------- */
+
+#tarjeta-perfil .perfil-informacion #icono-telefono{
+    color: green;
+}
+
+#tarjeta-perfil .perfil-informacion #icono-mail{
+    color: var(--primary);
+}
+
+#tarjeta-perfil .perfil-informacion #icono-ubicacion{
+    color: red;
+}
