@@ -1,12 +1,15 @@
-import Register from "./pages/Register";
-import Login from "./pages/Login";
-import Navbar from "./components/Navbar";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Detalles from "./components/Detalles";
+import { useState } from "react";
 
 function App() {
+  const [openModal, setOpenModal] = useState(false);
+
   return (
-    <Register/>
+    <>
+      <h1>Abrir modal</h1>
+      <button onClick={() => setOpenModal(true)}>Abrir</button>
+      {openModal && <Detalles closeModal={setOpenModal} />}
+    </>
   );
 }
 
