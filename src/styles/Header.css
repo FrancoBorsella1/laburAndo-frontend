@@ -20,7 +20,6 @@
 
 /* Contenedores */
 #componente-header {
-    height: 200px;
     background-color: var(--secundary);
     display: flex;
     justify-content: space-evenly;

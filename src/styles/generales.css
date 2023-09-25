@@ -34,7 +34,9 @@ input,select,textarea {
     font-size: medium;
     /* padding: arribaAbajo IzqDer; */
 }
-
+header{
+    height: 200px;
+}
 main {
     display: flex;
     justify-content: space-around;
