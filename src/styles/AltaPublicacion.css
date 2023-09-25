@@ -1,0 +1,60 @@
+@import 'generales.css';
+@import 'modal.css';
+
+/* --------- Estructura: maquetado de divs, etc --------- */
+
+/* Header */
+
+/* Body */
+#alta-publicacion .modal-body{
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 20px; 
+}
+    #alta-publicacion .modal-body input,
+    #alta-publicacion .modal-body textarea {
+        border-radius: 0;
+        width: 100%;
+        border: 0;
+        margin-top: 15px;
+        border-bottom: 1px solid var(--secundary);
+    }
+    #alta-publicacion #alta-publicacion-titulo{
+        height: 10%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #alta-publicacion #alta-publicacion-descripcion{
+        height: 85%;
+        resize: none;
+        overflow-y: auto;
+    }
+
+
+/* Footer */
+#alta-publicacion .modal-footer{
+    flex: 17%;
+    justify-content: space-between;
+    border: none;
+}
+    #alta-publicacion .modal-footer .alta-publicacion-opciones{
+        flex-direction: row;
+    }
+
+/* --------- Generales: más de 1 elemento --------- */
+#alta-publicacion .modal-footer select{
+    background-color: var(--secundary);
+    height: 30px;
+    width: 120px;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+/* --------- Independientes: 1 elemento --------- */
+
+/* Footer */
+    #alta-publicacion .modal-footer button{ /* Boton: Publicar */
+        height: 30px;
+        width: 120px;
+        font-size: 14px
+    }
