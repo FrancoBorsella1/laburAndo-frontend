@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import '../styles/AltaPublicacion.css';
 
-function AltaDetalles({ closeModal }) {
+function AltaPublicacion({ closeModal }) {
     return (
         <div className="modalBackground">
             <div className="contenedor-modal" id="alta-publicacion">
@@ -45,4 +45,4 @@ function AltaDetalles({ closeModal }) {
     );
 }
 
-export default AltaDetalles;
+export default AltaPublicacion;

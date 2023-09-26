@@ -5,7 +5,7 @@
 /* Contenddores */
 #contenedor-publicacion{
     height: 170px; /*header:50px + content:120px*/
-    max-width: 550px;
+    width: 550px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 

@@ -1,12 +1,12 @@
 import React from "react";
 import '../styles/Header.css';
 
-function Header() {
+function Header({onAbrirModal}) {
     return(
         <header id="componente-header">
             <div className="contenedor-publicacion">
                 <p>¿Estás buscando un servicio?</p>
-                <input className="publicacion" placeholder="Creá una publicación..."></input>
+                <button className="publicacion" onClick={onAbrirModal}>Creá una publicación...</button>
             </div>
             <div className="linea-vertical"></div>
             <div className="contenedor-busqueda">

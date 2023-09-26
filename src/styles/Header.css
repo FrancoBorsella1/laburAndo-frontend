@@ -60,7 +60,12 @@
     flex-direction: row;
     justify-content: space-around;
 }
+
 #componente-header .publicacion{
     background-color: var(--claro);
     cursor: pointer;
+    color: rgb(100, 100, 100);
+    font-weight: 100;
+    text-align: left;
+    padding-left: 15px;
 }
