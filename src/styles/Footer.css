@@ -1,0 +1,72 @@
+@import 'generales.css';
+
+/* Genéricos en esta página */
+.footer a {
+    color: var(--oscuro);
+    font-size: 0.85rem;
+}
+
+/* Contenedores */
+
+.footer{/* incluye el circulito gris para abrir y cerrar */
+    /* margin-top: 100%; */
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    transform: translateY(70%);
+    transition: transform 0.3s ease-in-out;
+}
+.footer.visible {
+    transform: translateY(0);
+}
+
+footer{
+    background-color: var(--extra);
+    height: 70px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 20px;
+}
+
+footer div{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 14rem;
+}
+
+.footer-informacion{justify-content: left;}
+.footer-laburando{justify-content: center;}
+.footer-redes{justify-content: right;}
+
+.openClose-footer{
+    height: 30px;
+    display: flex;
+    justify-content: center;
+}
+.footer-circle{/*Circulito gris*/
+    width: 80px;
+    height: 80px;
+    background: var(--extra);
+    border-radius: 100%;
+    padding-top: 7px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Elementos individuales: img, logo-azul, elementos con id */
+.footer-informacion a{margin-right: 30px;}
+.footer-logo{height: 65%;}
+.footer-ico{height: 1.6rem;margin-left: 15px;}
+
+.footer-openclose-icon{
+    position: absolute;
+    color: var(--terciary);
+    height: 20px;
+    margin:0;padding: 0;
+}
+
+
+
+

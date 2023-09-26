@@ -1,0 +1,77 @@
+@import 'generales.css';
+@import 'modal.css';
+
+  
+    /*---------- MODAL BODY ------------*/
+
+      /* detalles */
+      #detalles-publicacion .modal-body .contenedor-detalles {
+        display:flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%; width: 430px;
+      }
+      #detalles-publicacion .modal-body .contenedor-detalles p {
+        word-wrap: break-word;
+      }
+      #detalles-publicacion .modal-body .contenedor-detalles .detalles-content {
+        display: flex;
+        align-items: left;
+        justify-content: center;
+        flex-direction: column;
+        padding: 10px;
+      }
+          
+
+      /* perfil */
+      #detalles-publicacion .modal-body .contenedor-detalles-perfil {
+        width: 220px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-left: 1px solid var(--secundary);
+      }
+      #detalles-publicacion .modal-body .contenedor-detalles-perfil .perfil-nombre {
+        font-weight: bold;
+        margin-bottom: 40px; margin-top: 5px;
+        text-align: center;
+        width: 88%;
+        max-height: 130px;
+        font-size: 1.2rem;
+        overflow: hidden;
+        overflow-y: auto;
+        text-overflow: ellipsis;
+      }
+      #detalles-publicacion .modal-body .contenedor-detalles-perfil .perfil-foto{
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--secundary);
+      }
+      #detalles-publicacion .modal-body .contenedor-detalles-perfil .perfil-numero{
+        width: 90%;
+        display: flex;
+        justify-content: center;
+      }
+      #detalles-publicacion .modal-footer{
+        justify-content: right;
+      } 
+
+  /* independientes */
+  #detalles-publicacion span, #detalles-publicacion #fecha-publicacion {
+    font-weight: bold;
+  }
+  #detalles-publicacion .contenedor-detalles-perfil img { /*foto de perfil en detalles*/
+    max-width: 100%;
+    height: auto;
+  }
+  #detalles-publicacion a {
+    margin-top: 15px;
+  }
+

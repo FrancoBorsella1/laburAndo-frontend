@@ -1,0 +1,42 @@
+@import 'generales.css';
+
+/* Genericos */
+nav a {
+    color: var(--claro);
+}
+
+/* contenedores */
+.navbar {
+    height: 70px;
+    background-color: var(--primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.navbar-options{
+    height: 100%;
+}
+
+.navbar-option{
+    display: flex;
+    width: 4rem;
+    margin-top: 12px;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+/* Elementos independientes */
+#cerrar-sesion, .navbar-options, .navbar-logo{
+    display: flex;
+    justify-content: center;
+    width: 8rem;
+}
+
+.navbar-icon {
+    color: var(--inactive2);
+    height: 25px;
+}
+
+.navbar-circle {height: 6px;}

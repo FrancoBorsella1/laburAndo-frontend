@@ -1,0 +1,38 @@
+@import 'generales.css';
+
+/* --------- Estructura: maquetado de divs, etc --------- */
+
+#contenedor-home{ /*main*/
+    flex-direction: column;   
+}
+    #contenedor-home .home-linea-resultados{
+        width: 100%;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.9rem;
+    }
+
+    #contenedor-home .home-publicaciones{
+        flex: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 30px 15px;
+        justify-items: center;
+    }
+
+/* --------- Generales: más de 1 elemento --------- */
+
+
+/* --------- Independientes: 1 elemento --------- */
+
+#contenedor-home .home-linea-resultados .linea-horizontal{
+    width: 32%;
+    background-color: black;
+    margin: 10px;
+}
+
+#contenedor-home .home-linea-resultados p{
+    margin-right: 5px;
+}
