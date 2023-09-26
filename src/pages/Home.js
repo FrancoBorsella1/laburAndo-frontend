@@ -61,7 +61,7 @@ function Home() {
     ];
 
     const [publicacionAmpliada, setPublicacionAmpliada] = useState(null);
-    // Funcion para cerrar la publicacion grande
+    //Funcion para cerrar la publicacion grande
     const closeDetalles = () => {
         setPublicacionAmpliada(null);
     };
@@ -69,13 +69,22 @@ function Home() {
     const ampliarPublicacion = (publicacion) => {
         setPublicacionAmpliada(publicacion);
     }
+    //Manejar el estado del modal
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
  
     //Renderizar las publicaciones chicas y la grande si está ampliada
     return(
         <>
             <Navbar/>
-            <Header/>
+            <Header onAbrirModal={openModal}/>
             <main id="contenedor-home">
                 <div className="home-linea-resultados">
                     <div className="linea-horizontal"></div>
@@ -95,6 +104,9 @@ function Home() {
                         <Detalles publicacion={publicacionAmpliada} closeModal={closeDetalles}/>
                     )}
                 </div>
+                {isModalOpen && (
+                    <AltaPublicacion closeModal={closeModal} />
+                )}
             </main>
             <Footer/>
         </>
