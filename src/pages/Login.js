@@ -2,6 +2,7 @@ import React from 'react';
 import logo from "../assets/logos/logo-original.png";
 import "../styles/Login.css"
 import Footer from '../components/Footer';
+import { Link } from 'react-router-dom';
 
 function Login() {
     return (
@@ -21,7 +22,7 @@ function Login() {
                         <div className='linea-horizontal'></div>
                     </div>
                     <div className='contenedor-links'>
-                        <a href='#'>¿No tenés una cuenta? Registrate</a>
+                        <Link to="/registro">¿No tenés una cuenta? Registrate</Link>
                     </div>
                 </form>
             </main>

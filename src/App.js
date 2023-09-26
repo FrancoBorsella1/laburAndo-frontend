@@ -1,27 +1,19 @@
-import { useState } from "react";
-//import Detalles from "./components/Detalles";
-//import AltaPublicacion from "./components/AltaPublicacion";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 import Home from "./pages/Home";
+import Perfil from "./pages/Perfil"
 
 function App() {
   return (
-    <>
-      <Home/>
-    </>
+    <Routes>
+      <Route path="/" element={<Login/>} />
+      <Route path="/registro" element={<Register/>} />
+      <Route path="/home" element={<Home/>} />
+      <Route path="/perfil" element={<Perfil/>} />
+    </Routes>
   );
 }
 
 export default App;
-
-/* 
-
-Código dentro del return para los detalles de una publicación (Agregar a pantalla de Home cuando esté hehca)
-
-    ALTA PUBLICACION
-    <>
-      <h1>Abrir modal</h1>
-      <button onClick={() => setOpenModal(true)}>Abrir</button>
-      {openModal && <AltaPublicacion
-      closeModal={setOpenModal} />}
-    </>
-*/
