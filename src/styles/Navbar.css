@@ -35,9 +35,8 @@ nav a {
 }
 
 .navbar-icon {
-    color: var(--claro);
+    color: var(--inactive2);
     height: 25px;
 }
 
 .navbar-circle {height: 6px;}
-.navbar-user{color: var(--inactive2);}
