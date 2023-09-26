@@ -1,6 +1,6 @@
 
 .modalBackground {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
@@ -10,15 +10,16 @@
     justify-content: center;align-items: center;
     z-index: 1000;
 }
+
     .contenedor-modal {
-      background-color: white;
-      width: 650px; height: 500px;
-      box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 10px;
-      border-radius: 50px;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      z-index: 1001;
+        background-color: var(--claro);
+        width: 650px; height: 500px;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 10px;
+        border-radius: 50px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        z-index: 1001;
     }
         /* HEADER */
         .contenedor-modal .modal-header {
