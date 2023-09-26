@@ -2,6 +2,7 @@ import React from 'react';
 import logo from "../assets/logos/logo-original.png";
 import "../styles/Register.css"
 import Footer from '../components/Footer';
+import { Link } from 'react-router-dom';
 
 function Register() {
     return (
@@ -22,7 +23,7 @@ function Register() {
                         <div className='linea-horizontal'></div>
                     </div>
                     <div className='contenedor-links'>
-                        <a href='#'>¿Ya tenés una cuenta? Iniciar sesión</a>
+                        <Link to="/">¿Ya tenés una cuenta? Iniciar sesión</Link>
                     </div>
                 </form>
             </main>
