@@ -18,7 +18,9 @@ function Login() {
                         <input type='text' name="email" placeholder='Correo electrónico'/>
                         <input type='password' name="password" placeholder='Contraseña'/>
                         <a href='#'>¿Olvidaste tu contraseña?</a>
-                        <button>Iniciar sesión</button>
+                        <Link to="/home">
+                            <button>Iniciar sesión</button>
+                        </Link>
                         <div className='linea-horizontal'></div>
                     </div>
                     <div className='contenedor-links'>

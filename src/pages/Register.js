@@ -16,6 +16,9 @@ function Register() {
                 <form className='formulario-registro'>
                     <h2>Registro</h2>
                     <div className='contenedor-inputs'>
+                        <input type='text' name="nombre" placeholder='Nombre'/>
+                        <input type='text' name="apellido" placeholder='Apellido'/>
+                        <input type='text' name="telefono" placeholder='Telefono'/>
                         <input type='text' name="email" placeholder='Correo electrónico'/>
                         <input type='password' name="password" placeholder='Contraseña'/>
                         <input type='password' name="rep-password" placeholder='Repetir contraseña'/>
