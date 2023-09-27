@@ -6,6 +6,7 @@
 #componente-header select, #componente-header input{
     cursor: pointer;
     padding-left: 12px;
+    margin-right: 5px;
 }
 #componente-header p {
     font-size: 18px;
@@ -29,7 +30,7 @@
 
 #componente-header .contenedor-publicacion, #componente-header .contenedor-busqueda{
     height: 100%;
-    width: 500px;
+    width: 550px;
     display: flex;
     flex-direction: column;
     align-items: center;
