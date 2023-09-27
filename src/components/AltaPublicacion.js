@@ -31,6 +31,12 @@ function AltaPublicacion({ closeModal }) {
                             <option value="electricidad">Electricidad</option>
                             <option value="jardineria">Jardinería</option>
                         </select>
+                        <select name="Provincia">
+                            <option value="" disabled selected hidden>Provincia</option>
+                            <option value="buenosaires">Buenos Aires</option>
+                            <option value="cordoba">Córdoba</option>
+                            <option value="neuquen">Neuquén</option>
+                        </select>
                         <select name="Localidad">
                             <option value="" disabled selected hidden>Localidad</option>
                             <option value="berazategui">Berazategui</option>
