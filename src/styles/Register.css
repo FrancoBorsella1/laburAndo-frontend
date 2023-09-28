@@ -14,7 +14,7 @@
     font-size: 3.4rem;
 }
 #contenedor-registro h2 {
-    margin-top: 55px;
+    margin-top: 25px;
 }
 
 /* Contenedores */
@@ -27,7 +27,7 @@
     }
     #contenedor-registro .formulario-registro {
         width: 370px;
-        height: 630px;
+        height: 580px;
     }
     
         #contenedor-registro.contenedor-inputs{
@@ -39,18 +39,18 @@
             align-items: center;
         }
             .contenedor-inputs a{
-                margin-top: 10px;
+                margin-top: 5px;
             }
             .contenedor-inputs button{
                 margin-top: 20px;
             }
             .contenedor-inputs input {
-                margin-top: 15px;
+                margin-top: 10px;
                 padding: 0px 15px;
             }
 
     #contenedor-registro .contenedor-links {
-        height: 100px;
+        height: 60px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -61,6 +61,6 @@
 /* Independientes */
 #contenedor-registro .linea-horizontal { /* Los estilos generales en el generales.css */
     width: 100%;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
