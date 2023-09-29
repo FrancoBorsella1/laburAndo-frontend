@@ -11,54 +11,11 @@ import Footer from '../components/Footer';
 
 function Home() {
 
-    const publicaciones =[
-        {
-            id: 1,
-            titulo: 'Publicacion 1',
-            fecha: '27/07/2023',
-            descripcion: 'Busco plomero para arreglar el flotante de un inodoro roto',
-            nombre: 'Franco Borsella',
-            numero: '124115124',
-            servicio: 'Plomeria',
-            localidad: 'Berazategui'
-        },
-        {
-            id: 2,
-            titulo: 'Publicacion 2',
-            fecha: '27/07/2023',
-            servicio: 'Plomeria',
-            localidad: 'Berazategui'
-        },
-        {
-            id: 2,
-            titulo: 'Publicacion 2',
-            fecha: '27/07/2023',
-            servicio: 'Plomeria',
-            localidad: 'Berazategui'
-        },
-        {
-            id: 2,
-            titulo: 'Publicacion 2',
-            fecha: '27/07/2023',
-            servicio: 'Plomeria',
-            localidad: 'Berazategui'
-        },
-        {
-            id: 2,
-            titulo: 'Publicacion 2',
-            fecha: '27/07/2023',
-            servicio: 'Plomeria',
-            localidad: 'Berazategui'
-        },
-        {
-            id: 2,
-            titulo: 'Publicacion 2',
-            fecha: '27/07/2023',
-            servicio: 'Plomeria',
-            localidad: 'Berazategui'
-        },
+    const [publicaciones, setPublicaciones] = useState([]);
 
-    ];
+    const agregarPublicacion = (publicacion) => {
+        setPublicaciones([publicacion, ...publicaciones]);
+    };
 
     const [publicacionAmpliada, setPublicacionAmpliada] = useState(null);
     //Funcion para cerrar la publicacion grande
@@ -105,7 +62,7 @@ function Home() {
                     )}
                 </div>
                 {isModalOpen && (
-                    <AltaPublicacion closeModal={closeModal} />
+                    <AltaPublicacion closeModal={closeModal} onPublicar={agregarPublicacion} />
                 )}
             </main>
             <Footer/>
