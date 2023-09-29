@@ -8,7 +8,7 @@ import axios from 'axios';
 function Login() {
 
     const navigate = useNavigate();
-    const [userData, setUserData] = useState(null);
+    // const [userData, setUserData] = useState(null);
     const [usuario, setUsuario] = useState({
         email: '',
         password: '',
@@ -25,14 +25,11 @@ function Login() {
     const iniciarSesion = async (event) => {
         event.preventDefault();
         try {
-          const response = await axios.post(
-            "http://localhost:3000/api/auth",
-            usuario
-          );
+          const response = await axios.post("http://localhost:3000/api/auth",usuario);
           console.log("Login exitoso: ", response.data.token);
     
           //Almacena los datos del usuario autenticado en el estado
-          setUserData(response.data.token);
+        //   setUserData(response.data.token);
     
           //gurda en local storage
           localStorage.setItem("token", response.data.token);
