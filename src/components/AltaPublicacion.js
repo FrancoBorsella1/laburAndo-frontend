@@ -1,9 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import '../styles/AltaPublicacion.css';
+import axios from 'axios';
+
 
 function AltaPublicacion({ closeModal, onPublicar }) {
+    const [servicios, setServicios] = useState([]);
+    const [provincias, setProvincias] = useState([]);
+    // const [localidades, setLocalidades] = useState([]);
+    const token = localStorage.getItem("token");
+    const config = { headers: { Authorization: `Bearer ${token}` } };
+
+    useEffect(() => {
+        axios.get(`http://localhost:3000/api/servicio`, config)
+            .then((response) => {
+                setServicios(response.data.servicios);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+        axios.get(`http://localhost:3000/api/provincia`, config)
+            .then((response) => {
+                setProvincias(response.data.provincias);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+
+    }, []);
+
+
+
+
     const [publicacion, setPublicacion] = useState({
         titulo: '',
         descripcion: '',
@@ -90,19 +119,22 @@ function AltaPublicacion({ closeModal, onPublicar }) {
                             onChange={(e) => setSelectedServicio(e.target.value)}
                         >
                             <option value="" disabled selected hidden>Servicio</option>
-                            <option value="plomeria">Plomería</option>
-                            <option value="electricidad">Electricidad</option>
-                            <option value="jardineria">Jardinería</option>
+                            {servicios.map((servicio) => (
+                                <option key={servicio.id} value={servicio.nombre}>
+                                    {servicio.nombre}
+                                </option>
+                            ))}  
                         </select>
                         <select 
                             name="Provincia"
                             value={selectedProvincia}
                             onChange={(e) => setSelectedProvincia(e.target.value)}
                         >
-                            <option value="" disabled selected hidden>Provincia</option>
-                            <option value="buenosaires">Buenos Aires</option>
-                            <option value="cordoba">Córdoba</option>
-                            <option value="neuquen">Neuquén</option>
+                        {provincias.map((provincia) => (
+                            <option key={provincia.id} value={provincia.nombre}>
+                                {provincia.nombre}
+                            </option>
+                        ))} 
                         </select>
                         <select 
                             name="Localidad"
