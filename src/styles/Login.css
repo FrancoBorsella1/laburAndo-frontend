@@ -64,3 +64,9 @@
     margin-top: 30px;
 }
 
+.error-input, .error-message {
+    font-size: 11px;
+    color: red;
+    margin: 3px;
+}
+
