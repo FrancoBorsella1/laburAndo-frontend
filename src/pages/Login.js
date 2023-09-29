@@ -24,16 +24,22 @@ function Login() {
 
     const iniciarSesion = async (event) => {
         event.preventDefault();
-        try{
-            const response = await axios.post('http://localhost:3000/api/auth', usuario);
-            console.log('Login exitoso: ', response.data); 
-            
-            //Almacena los datos del usuario autenticado en el estado
-            setUserData(response.data);
-            
-            navigate("/home"); //Navega hacia el home
+        try {
+          const response = await axios.post(
+            "http://localhost:3000/api/auth",
+            usuario
+          );
+          console.log("Login exitoso: ", response.data.token);
+    
+          //Almacena los datos del usuario autenticado en el estado
+          setUserData(response.data.token);
+    
+          //gurda en local storage
+          localStorage.setItem("token", response.data.token);
+    
+          navigate("/home"); //Navega hacia el home
         } catch (error) {
-            console.error('No se puede iniciar sesión: ', error);
+          console.error("No se puede iniciar sesión: ", error);
         }
     };
 
