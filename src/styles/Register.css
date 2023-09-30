@@ -26,8 +26,12 @@
         width: 550px;
     }
     #contenedor-registro .formulario-registro {
+        display: flex;
+        flex-direction: column;
         width: 370px;
-        height: 580px;
+        min-height: 0;
+        overflow-y: auto;
+        min-width: 300px;
     }
     
         #contenedor-registro.contenedor-inputs{
@@ -64,3 +68,8 @@
     margin-top: 20px;
 }
 
+.error {
+    font-size: 11px;
+    color: red;
+    margin: 3px;
+}
