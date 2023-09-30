@@ -68,6 +68,7 @@ function Login() {
           navigate("/home"); //Navega hacia el home
         } catch (error) {
             console.error("No se puede iniciar sesión: ", error);
+            alert("No se puede iniciar sesión: ", error);
         }
     };
 
