@@ -1,40 +1,105 @@
-import React from "react";
-import '../styles/Header.css';
+import React, { useState, useEffect } from "react";
+import "../styles/Header.css";
+import axios from "axios";
 
-function Header({onAbrirModal}) {
-    return(
-        <header id="componente-header">
-            <div className="contenedor-publicacion">
-                <p>¿Estás buscando un servicio?</p>
-                <button className="publicacion" onClick={onAbrirModal}>Creá una publicación...</button>
-            </div>
-            <div className="linea-vertical"></div>
-            <div className="contenedor-busqueda">
-                <p>¿Estás buscando un trabajo?</p>
-                <form className="formulario-busqueda">
-                    <select name="Servicio">
-                        <option value="" disabled selected hidden>Servicio</option>
-                        <option value="plomeria">Plomería</option>
-                        <option value="electricidad">Electricidad</option>
-                        <option value="jardineria">Jardinería</option>
-                    </select>
-                    <select name="Provincia">
-                        <option value="" disabled selected hidden>Provincia</option>
-                        <option value="buenosaires">Buenos Aires</option>
-                        <option value="cordoba">Córdoba</option>
-                        <option value="neuquen">Neuquén</option>
-                    </select>
-                    <select name="Localidad">
-                        <option value="" disabled selected hidden>Localidad</option>
-                        <option value="berazategui">Berazategui</option>
-                        <option value="berisso">Berisso</option>
-                        <option value="la plata">La Plata</option>
-                    </select>
-                    <button>Buscar</button>
-                </form>
-            </div>
-        </header>
-    );
-};
+function Header({ onAbrirModal }) {
+  const [servicios, setServicios] = useState([]);
+  const [provincias, setProvincias] = useState([]);
+  const [localidades, setLocalidades] = useState([]);
+  const [provinciaSeleccionada, setProvinciaSeleccionada] = useState("");
+  const token = localStorage.getItem("token");
+  const config = { headers: { Authorization: `Bearer ${token}` } };
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/api/servicio`, config)
+      .then((response) => {
+        setServicios(response.data.servicios);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    axios
+      .get(`http://localhost:3000/api/provincia`, config)
+      .then((response) => {
+        setProvincias(response.data.provincias);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const handleProvinciaChange = (event) => {
+    const nuevaProvinciaSeleccionada = event.target.value;
+    setProvinciaSeleccionada(nuevaProvinciaSeleccionada);
+    console.log("seleccionada: ", nuevaProvinciaSeleccionada);
+
+    axios
+      .get(
+        `http://localhost:3000/api/localidadesxprovincia/${nuevaProvinciaSeleccionada}`,
+        config
+      )
+      .then((response) => {
+        setLocalidades(response.data.localidades);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  // --------------------------------------------------------------------------------------------
+
+  return (
+    <header id="componente-header">
+      <div className="contenedor-publicacion">
+        <p>¿Estás buscando un servicio?</p>
+        <button className="publicacion" onClick={onAbrirModal}>
+          Creá una publicación...
+        </button>
+      </div>
+      <div className="linea-vertical"></div>
+      <div className="contenedor-busqueda">
+        <p>¿Estás buscando un trabajo?</p>
+        <form className="formulario-busqueda">
+          <select name="Servicio">
+            <option value="" disabled selected hidden>
+              Servicio
+            </option>
+            {servicios.map((servicio) => (
+              <option key={servicio.id} value={servicio.nombre}>
+                {servicio.nombre}
+              </option>
+            ))}
+          </select>
+          <select
+            name="Provincia"
+            onChange={handleProvinciaChange}
+            value={provinciaSeleccionada}
+          >
+            <option value="" disabled selected hidden>
+              Provincia
+            </option>
+            {provincias.map((provincia) => (
+              <option key={provincia.id} value={provincia.nombre}>
+                {provincia.nombre}
+              </option>
+            ))}
+          </select>
+          <select name="Localidad">
+            <option value="" disabled selected hidden>
+              Localidad
+            </option>
+            {localidades.map((localidad) => (
+              <option key={localidad.id} value={localidad.nombre}>
+                {localidad.nombre}
+              </option>
+            ))}
+          </select>
+          <button>Buscar</button>
+        </form>
+      </div>
+    </header>
+  );
+}
 
 export default Header;

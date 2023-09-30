@@ -11,11 +11,12 @@ import Footer from '../components/Footer';
 
 function Home() {
 
-    const publicaciones =[
+    {/*Eliminar lineas 14-48*/}
+    const publicaciones2 =[
         {
             id: 1,
-            titulo: 'Publicacion 1',
-            fecha: '27/07/2023',
+            titulo: 'Busco plomero',
+            fecha: '29/07/2023',
             descripcion: 'Busco plomero para arreglar el flotante de un inodoro roto',
             nombre: 'Franco Borsella',
             numero: '124115124',
@@ -24,41 +25,32 @@ function Home() {
         },
         {
             id: 2,
-            titulo: 'Publicacion 2',
+            titulo: 'Busco jardinero',
             fecha: '27/07/2023',
-            servicio: 'Plomeria',
-            localidad: 'Berazategui'
+            descripcion: 'Busco jardinero para cortar el pasto de una cancha de futbol 11',
+            nombre: 'Cintia Valero',
+            numero: '9283517859',
+            servicio: 'Jardinería',
+            localidad: 'La Plata'
         },
         {
-            id: 2,
-            titulo: 'Publicacion 2',
-            fecha: '27/07/2023',
-            servicio: 'Plomeria',
-            localidad: 'Berazategui'
+            id: 3,
+            titulo: 'Busco gasista',
+            fecha: '20/07/2023',
+            descripcion: 'Busco gasista para reparar una pérdida en la cocina',
+            nombre: 'Matias Batista',
+            numero: '12367123',
+            servicio: 'Gas',
+            localidad: 'Gutierrez'
         },
-        {
-            id: 2,
-            titulo: 'Publicacion 2',
-            fecha: '27/07/2023',
-            servicio: 'Plomeria',
-            localidad: 'Berazategui'
-        },
-        {
-            id: 2,
-            titulo: 'Publicacion 2',
-            fecha: '27/07/2023',
-            servicio: 'Plomeria',
-            localidad: 'Berazategui'
-        },
-        {
-            id: 2,
-            titulo: 'Publicacion 2',
-            fecha: '27/07/2023',
-            servicio: 'Plomeria',
-            localidad: 'Berazategui'
-        },
-
+       
     ];
+
+    const [publicaciones, setPublicaciones] = useState([]);
+
+    const agregarPublicacion = (publicacion) => {
+        setPublicaciones([publicacion, ...publicaciones]);
+    };
 
     const [publicacionAmpliada, setPublicacionAmpliada] = useState(null);
     //Funcion para cerrar la publicacion grande
@@ -100,12 +92,20 @@ function Home() {
                             onAmpliar={ampliarPublicacion}
                         />
                     ))}
+                    {/*Eliminar lineas 94-101*/}
+                    {publicaciones2.map((publicacion) => (
+                        <Publicacion
+                            key={publicacion.id}
+                            publicacion={publicacion}
+                            onAmpliar={ampliarPublicacion}
+                        />
+                    ))}
                     {publicacionAmpliada && (
                         <Detalles publicacion={publicacionAmpliada} closeModal={closeDetalles}/>
                     )}
                 </div>
                 {isModalOpen && (
-                    <AltaPublicacion closeModal={closeModal} />
+                    <AltaPublicacion closeModal={closeModal} onPublicar={agregarPublicacion} />
                 )}
             </main>
             <Footer/>
