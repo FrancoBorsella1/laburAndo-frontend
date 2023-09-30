@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import "../styles/AltaPublicacion.css";
 import axios from "axios";
+import jwtDecode from "jwt-decode"; //npm install jwt-decode
 
 function AltaPublicacion({ closeModal, onPublicar }) {
   const [servicios, setServicios] = useState([]);
@@ -14,8 +15,17 @@ function AltaPublicacion({ closeModal, onPublicar }) {
   const [localidadSeleccionada, setLocalidadSeleccionada] = useState("");
 
   const [publicacion, setPublicacion] = useState([]);
+  const [localidadId, setLocalidadId] = useState(null);
+  //descripcion: "",
+  //duracionDias: "",
+  //fecha: "",
+  //titulo: "",
+  //idPersona: "",
+  //idLocalidad: "",
+  //servicio: "",
 
   const token = localStorage.getItem("token");
+  const decoded = jwtDecode(token);
   const config = { headers: { Authorization: `Bearer ${token}` } };
 
   useEffect(() => {
@@ -52,6 +62,35 @@ function AltaPublicacion({ closeModal, onPublicar }) {
       .catch((error) => {
         console.error(error);
       });
+  };
+
+  const persistirPublicacion = async (event) => {
+    event.preventDefault();
+
+    //Para persisistir
+    const fechaActual = new Date().toLocaleDateString();
+    const publicacionPersistir = {
+      descripcion: publicacion.descripcion,
+      duracionDias: 10,
+      fecha: fechaActual,
+      titulo: publicacion.titulo,
+      idPersona: decoded.id,
+      idLocalidad: parseInt(localidadId),
+      servicio: servicioSeleccionado,
+    };
+    console.log("Persistir: ", publicacionPersistir);
+
+    //Fin: para persisistir
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/publicacion",
+        publicacionPersistir,
+        config
+      );
+      console.log("Publicacion exitosa: ", response.data);
+    } catch (error) {
+      console.error("No se puede iniciar sesión: ", error);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -159,13 +198,24 @@ function AltaPublicacion({ closeModal, onPublicar }) {
             <select
               name="Localidad"
               value={localidadSeleccionada}
-              onChange={(e) => setLocalidadSeleccionada(e.target.value)}
+              onChange={(e) => {
+                setLocalidadSeleccionada(e.target.value);
+                setLocalidadId(
+                  e.target.options[e.target.selectedIndex].getAttribute(
+                    "data-key"
+                  )
+                );
+              }}
             >
               <option value="" disabled selected hidden>
                 Localidad
               </option>
               {localidades.map((localidad) => (
-                <option key={localidad.id} value={localidad.nombre}>
+                <option
+                  key={localidad.id}
+                  value={localidad.nombre}
+                  data-key={localidad.id}
+                >
                   {localidad.nombre}
                 </option>
               ))}
