@@ -9,22 +9,22 @@ import axios from 'axios';
 import jwtDecode from "jwt-decode"; //npm install jwt-decode
 
 function Perfil() {
-    const [user, setUser] = useState(null);
+    const token = localStorage.getItem("token");
+    const decoded = jwtDecode(token);
+    const config = { headers: { Authorization: `Bearer ${token}` } };
+    const [user, setUser] = useState({});
+
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
-        const decoded = jwtDecode(token);
-        const config = { headers: { Authorization: `Bearer ${token}` } };
         axios.get(`http://localhost:3000/api/usuario/${decoded.id}`, config)
             .then((response) => {
                 setUser(response.data);
             })
             .catch((error) => {
                 console.error(error);
-            });
-        console.log(user)
-
-    }, []);
+            });      
+    },[]);
+    console.log("estado: ", user)
 
     return (
         <>
@@ -35,15 +35,15 @@ function Perfil() {
                         <img alt="foto"/>
                     </div>
                     <div className='perfil-informacion'>
-                        <p className='perfil-nombre'>{user.nombre + ' ' + user.apellido }</p>
+                        <p className='perfil-nombre'>{user.nombre && user.apellido ? user.nombre + ' ' + user.apellido: 'Cargando...'}</p>
                         <div className='item-informacion'>
-                            <FontAwesomeIcon icon={faPhone} id="icono-telefono"/><span> {user.telefono}</span>
+                            <FontAwesomeIcon icon={faPhone} id="icono-telefono"/><span> {user.telefono ? user.telefono: 'Cargando...'}</span>
                         </div>
                         <div className='item-informacion'>
-                            <FontAwesomeIcon icon={faEnvelope} id="icono-mail"/><span> {user.email}</span>
+                            <FontAwesomeIcon icon={faEnvelope} id="icono-mail"/><span> {user.email ? user.email: 'Cargando...'}</span>
                         </div>
                         <div className='item-informacion'>
-                            <FontAwesomeIcon icon={faLocationDot} id="icono-ubicacion"/><span> {user.localidad.nombre + ', ' + user.localidad.provincia.nombre} </span>
+                            <FontAwesomeIcon icon={faLocationDot} id="icono-ubicacion"/><span> {user.localidad && user.apellido ? user.localidad.nombre + ', ' + user.localidad.provincia.nombre: 'Cargando...'} </span>
                         </div>
                     </div>
                 </div>
@@ -51,6 +51,8 @@ function Perfil() {
             <Footer/>
         </>
     );
+
+
 };
 
 export default Perfil;

@@ -21,7 +21,7 @@ nav a {
 
 .navbar-option{
     display: flex;
-    width: 4rem;
+    width: 128px;
     margin-top: 12px;
     justify-content: space-around;
     flex-direction: column;
@@ -31,7 +31,9 @@ nav a {
 #cerrar-sesion, .navbar-options, .navbar-logo{
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 8rem;
+    text-align: center;
 }
 
 .navbar-icon {
@@ -40,3 +42,7 @@ nav a {
 }
 
 .navbar-circle {height: 6px;}
+
+.navbar button {
+    width: 128px;
+}
