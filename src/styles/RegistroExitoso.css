@@ -1,0 +1,23 @@
+@import 'generales.css';
+@import 'modal.css';
+
+#registro-exitoso{
+    height: 450px;
+}
+#registro-exitoso p{
+    margin-top: 10px;
+}
+#registro-exitoso button{
+    margin-top: 20px;
+    width: 390px;
+
+}
+#registro-exitoso .modal-body{
+    flex-direction: column;
+    padding: 0 90px;
+}
+
+#registro-exitoso #icono-check-registro{
+    color: green;
+    height: 55px;
+}
