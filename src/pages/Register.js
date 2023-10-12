@@ -13,6 +13,7 @@ function Register() {
         email: '',
         telefono: '',
         clave: '',
+        repclave: '',
         usuario: '',
         idLocalidad: 1, //Por defecto, cambiar más adelante
     });
@@ -23,9 +24,17 @@ function Register() {
         email: '',
         telefono: '',
         clave: '',
+        repclave: '',
         usuario: '',
         idLocalidad: '', 
     });
+
+    const [tabActiva, setTabActiva] = useState(1);
+
+    //Manejar cambio de tabs
+    const handleTabChange = (tab) => {
+        setTabActiva(tab);
+    };
 
     //Manejar cambios en los campos del formulario
     const handleInputChange = (event) => {
@@ -48,6 +57,7 @@ function Register() {
             email: '',
             telefono: '',
             clave: '',
+            repclave: '',
             usuario: '',
         };
 
@@ -91,11 +101,18 @@ function Register() {
             erroresEncontrados = true;
         }
 
+        //Valida que las contraseñas coincidan
+        if (usuario.clave && usuario.repclave && usuario.clave !== usuario.repclave) {
+            nuevosErrores.repclave = 'Las contraseñas no coinciden'
+            erroresEncontrados = true;
+        }
+
         //Validar que el usuario no esté vacío
         if (!usuario.usuario) {
             nuevosErrores.usuario = 'El usuario es obligatorio'
             erroresEncontrados = true;
         }
+
 
         if (erroresEncontrados) {
             seterrores(nuevosErrores);
@@ -123,68 +140,78 @@ function Register() {
                 </div>
 
                 <form className='formulario-registro' onSubmit={agregarUsuario}>
-                    <h2>Registro</h2>
                     <div className='contenedor-inputs'>
-                        <input 
-                            type='text' 
-                            name="nombre" 
-                            placeholder='Nombre'
-                            value={usuario.nombre}
-                            onChange={handleInputChange}
-                            
-                        />
-                        {errores.nombre && <p className='error'>{errores.nombre}</p>}
-                        <input 
-                            type='text' 
-                            name="apellido" 
-                            placeholder='Apellido'
-                            value={usuario.apellido}
-                            onChange={handleInputChange}
-                            
-                        />
-                        {errores.apellido && <p className='error'>{errores.apellido}</p>}
-                        <input 
-                            type='text' 
-                            name="email" 
-                            placeholder='Correo electrónico'
-                            value={usuario.email}
-                            onChange={handleInputChange}
-                            
-                        />
-                        {errores.email && <p className='error'>{errores.email}</p>}
-                        <input 
-                            type='text' 
-                            name="usuario" 
-                            placeholder='Nombre de usuario'
-                            value={usuario.usuario}
-                            onChange={handleInputChange}
-                            
-                        />
-                        {errores.usuario && <p className='error'>{errores.usuario}</p>}
-                        <input 
-                            type='text' 
-                            name="telefono" 
-                            placeholder='Telefono'
-                            value={usuario.telefono}
-                            onChange={handleInputChange}
-                            
-                        />
-                        {errores.telefono && <p className='error'>{errores.telefono}</p>}
-                        <input 
-                            type='password' 
-                            name="clave" 
-                            placeholder='Contraseña'
-                            value={usuario.clave}
-                            onChange={handleInputChange}
-                            
-                        />
-                        {errores.clave && <p className='error'>{errores.clave}</p>}
-                        {/* <input 
-                            type='password' 
-                            name="rep-password" 
-                            placeholder='Repetir contraseña'
-                        /> */}
-                        <button type='submit'>Registrarse</button>
+                        {tabActiva === 1 && (
+                            <>
+                                <h2>Registro</h2>
+                                <input 
+                                    type='text' 
+                                    name="usuario" 
+                                    placeholder='Nombre de usuario'
+                                    value={usuario.usuario}
+                                    onChange={handleInputChange}
+                                />
+                                {errores.usuario && <p className='error'>{errores.usuario}</p>}
+                                <input 
+                                    type='text' 
+                                    name="email" 
+                                    placeholder='Correo electrónico'
+                                    value={usuario.email}
+                                    onChange={handleInputChange}
+                                />
+                                {errores.email && <p className='error'>{errores.email}</p>}
+                                <input 
+                                    type='password' 
+                                    name="clave" 
+                                    placeholder='Contraseña'
+                                    value={usuario.clave}
+                                    onChange={handleInputChange}
+                                />
+                                {errores.clave && <p className='error'>{errores.clave}</p>}
+                                <input 
+                                    type='password' 
+                                    name="repclave" 
+                                    placeholder='Repetir contraseña'
+                                    value={usuario.repclave}
+                                    onChange={handleInputChange}
+                                /> 
+                                {errores.repclave && <p className='error'>{errores.repclave}</p>}
+                                <button type="button" onClick={() => handleTabChange(2)}>
+                                    Continuar
+                                </button>
+                            </>
+                        )}
+                        {tabActiva === 2 && (
+                            <>
+                                <h2>Registro</h2>
+                                <input
+                                    type='text'
+                                    name='nombre'
+                                    placeholder='Nombre'
+                                    value={usuario.nombre}
+                                    onChange={handleInputChange}
+                                />
+                                {errores.nombre && <p className='error'>{errores.nombre}</p>}
+                                <input
+                                    type='text'
+                                    name='apellido'
+                                    placeholder='Apellido'
+                                    value={usuario.apellido}
+                                    onChange={handleInputChange}
+                                />
+                                {errores.apellido && <p className='error'>{errores.apellido}</p>}
+                                <input 
+                                    type='text' 
+                                    name="telefono" 
+                                    placeholder='Telefono'
+                                    value={usuario.telefono}
+                                    onChange={handleInputChange}    
+                                />
+                                {errores.telefono && <p className='error'>{errores.telefono}</p>}
+                                <button id='boton-atras' type='button' onClick={() => handleTabChange(1)}>Atrás</button>
+                                <button type='submit'>Registrarse</button>
+                            </>  
+                        )}
                         <div className='linea-horizontal'></div>
                     </div>
                     <div className='contenedor-links'>

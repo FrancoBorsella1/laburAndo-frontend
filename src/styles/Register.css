@@ -73,3 +73,7 @@
     color: red;
     margin: 3px;
 }
+
+#boton-atras {
+    background-color: var(--inactive);
+}
