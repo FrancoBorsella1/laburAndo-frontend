@@ -85,7 +85,7 @@ function Login() {
                         <input 
                             type='text'
                             name="email" 
-                            placeholder='Correo electrónico'
+                            placeholder='Usuario / Correo electrónico'
                             value={usuario.email}
                             onChange={handleInputChange}
                             required
