@@ -2,54 +2,94 @@
 
 /* --------- Estructura: maquetado de divs, etc --------- */
 #contenedor-perfil{
-    height: 84vh;
-    display: flex;
     flex-direction: column;
-    justify-content: center; align-items: center;
+    justify-content: center;
+    margin-top: 35px;
 }
 
 #tarjeta-perfil {
-    max-height: 380px; width: 360px;
+    height: 450px; width: 650px;
     background-color: var(--claro);
     border-radius: 30px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
-    justify-content: space-between; align-items: center;
+}
+
+#tarjeta-perfil #perfil-promedio-resena {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+#tarjeta-perfil .tarjeta-perfil-body {
+    display: flex;
+    height: 100%;
+}
+
+#tarjeta-perfil .tarjeta-perfil-header {
+    height: 60px; width: 100%;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgb(204, 204, 204);
+}
+
+#tarjeta-perfil .perfil-informacion{
+    width: 50%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: 1px solid rgb(204, 204, 204);
+    font-size: medium;
+}
+
+#tarjeta-perfil .perfil-informacion .perfil-descripcion {
+    width: 90%;
+    max-height: 200px;
+    margin-top: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #tarjeta-perfil .perfil-foto {
-    width: 100px; height: 100px;
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;align-items: center;
+    max-width: 160px;
+    height: 160px;
     background-color: var(--secundary);
-    margin-top: -50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-#tarjeta-perfil .perfil-informacion{
+
+#tarjeta-perfil .perfil-contacto-datos {
+    font-size: larger;
     display: flex;
     flex-direction: column;
-    justify-content: center;align-items: center;
-    flex: auto;
-    padding: 25px 0;
+    justify-content: center; align-items: center;
+    text-align: center;
+    gap: 10px;
+    width: 80%;
+}
+
+#tarjeta-perfil .perfil-contacto {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; align-items: center;
 }
 
 /* --------- Generales: más de 1 elemento --------- */
 
-#tarjeta-perfil .perfil-informacion .perfil-nombre{
+#tarjeta-perfil .tarjeta-perfil-header .perfil-nombre{
     color: var(--primary);
     text-align: center;
     font-weight: bold;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
     max-height: 80px;
-    width: 230px;
-    font-size: 1.3rem;
-    overflow: hidden;
-    overflow-y: auto;
+    width: 100%;
+    font-size: 2rem;
     text-overflow: ellipsis;
-    border-bottom: 1px solid var(--secundary);
 }
 
 #tarjeta-perfil .perfil-informacion div{
@@ -63,17 +103,48 @@
 
 /* --------- Independientes: 1 elemento --------- */
 
-#tarjeta-perfil .perfil-informacion #icono-telefono{
+
+
+#tarjeta-perfil .item-informacion #icono-telefono{
     color: green;
 }
 
-#tarjeta-perfil .perfil-informacion #icono-mail{
+#tarjeta-perfil .item-informacion #icono-mail{
     color: var(--primary);
 }
 
-#tarjeta-perfil .perfil-informacion #icono-ubicacion{
+#tarjeta-perfil .item-informacion #icono-ubicacion{
     color: red;
 }
+
+#tarjeta-perfil .item-informacion #icono-ubicacion{
+    color: red;
+}
+
+#tarjeta-perfil button {
+    margin-top: 50px;
+}
+
+.linea-resultados{
+    width: 650px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.linea-resultados .linea-horizontal{
+    width: 100%;
+    background-color: black;
+    margin: 10px;
+}
+
+.linea-resultados p{
+    margin-right: 5px;
+}
+
+
 /* #tarjeta-perfil span{
     width: 100%;
 } */
