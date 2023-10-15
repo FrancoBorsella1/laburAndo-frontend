@@ -6,21 +6,28 @@ import axios from "axios";
 import jwtDecode from "jwt-decode"; //npm install jwt-decode
 
 function AltaPublicacion({ closeModal, onPublicar }) {
+  //variables de estado para llenar los filtros
   const [servicios, setServicios] = useState([]);
   const [provincias, setProvincias] = useState([]);
   const [localidades, setLocalidades] = useState([]);
 
+  //variables de estado para almacenar la opción seleccionada
   const [provinciaSeleccionada, setProvinciaSeleccionada] = useState("");
   const [servicioSeleccionado, setServicioSeleccionado] = useState("");
   const [localidadSeleccionada, setLocalidadSeleccionada] = useState("");
 
+  //variables de estado para controlar el sstado de la publicacion
   const [publicacion, setPublicacion] = useState([]);
   const [localidadId, setLocalidadId] = useState(null);
-
+  const [servicioId, setServicioId] = useState(null);
+  
   const token = localStorage.getItem("token");
-  const decoded = jwtDecode(token);
-  const config = { headers: { Authorization: `Bearer ${token}` } };
+  const decoded = jwtDecode(token); //se desestructura el token
+  const config = { //token con formato Json
+    headers: { Authorization: `Bearer ${token}` } 
+  };
   console.log(config.headers.Authorization)
+
   useEffect(() => {
     axios
       .get(`http://localhost:3000/api/servicio`, config)
@@ -39,6 +46,8 @@ function AltaPublicacion({ closeModal, onPublicar }) {
         console.error(error);
       });
   }, []);
+
+  //Cuando cambia el select de provincia, traigo las localidades de la provincia seleccionada
   const handleProvinciaChange = (event) => {
     const nuevaProvinciaSeleccionada = event.target.value;
     setProvinciaSeleccionada(nuevaProvinciaSeleccionada);
@@ -59,25 +68,32 @@ function AltaPublicacion({ closeModal, onPublicar }) {
 
   const persistirPublicacion = async () => {
 
-    //Para persisistir
-    const fechaActual = new Date().toLocaleDateString();
+    //Contruir objeto que se va a persisistir
+    const fechaActual = new Date();
+    const año = fechaActual.getFullYear();
+    const mes = (fechaActual.getMonth() + 1).toString().padStart(2, '0'); 
+    const día = fechaActual.getDate().toString().padStart(2, '0'); 
+
+    const fechaPublicacionActual = `${año}/${mes}/${día}`;
+    console.log("date: ", fechaPublicacionActual);
+
     const publicacionPersistir = {
       descripcion: publicacion.descripcion,
       duracionDias: 10,
-      fecha: fechaActual,
+      fechaPublicacion: fechaPublicacionActual,
       titulo: publicacion.titulo,
       idPersona: decoded.id,
       idLocalidad: parseInt(localidadId),
-      servicio: servicioSeleccionado,
+      idServicio: parseInt(servicioId),
     };
     console.log("Persistir: ", publicacionPersistir);
+    //Fin construir
 
-    //Fin: para persisistir
     try {
       const response = await axios.post(
         "http://localhost:3000/api/publicacion",
         publicacionPersistir,
-        config.headers
+        config
       );
       console.log("Publicacion exitosa: ", response.data);
     } catch (error) {
@@ -101,7 +117,7 @@ function AltaPublicacion({ closeModal, onPublicar }) {
     }
 
     const fechaActual = new Date().toLocaleDateString();
-    const nuevaPublicacion = {
+    const nuevaPublicacion = { //Publicación stática que se manda al home (que no se guarda en la BD)
       titulo: publicacion.titulo,
       descripcion: publicacion.descripcion,
       servicio: servicioSeleccionado,
@@ -109,9 +125,9 @@ function AltaPublicacion({ closeModal, onPublicar }) {
       localidad: localidadSeleccionada,
       fecha: fechaActual,
     };
-
     onPublicar(nuevaPublicacion);
-    persistirPublicacion()
+
+    persistirPublicacion() //Se ejecuta la función para persistir la publicación 
 
     setPublicacion({
       titulo: "",
@@ -163,13 +179,18 @@ function AltaPublicacion({ closeModal, onPublicar }) {
             <select
               name="Servicio"
               value={servicioSeleccionado}
-              onChange={(e) => setServicioSeleccionado(e.target.value)}
-            >
+              // onChange={(e) => setServicioSeleccionado(e.target.value)}
+              onChange={(e) => {
+                setServicioSeleccionado(e.target.value);
+                setServicioId(
+                  e.target.options[e.target.selectedIndex].getAttribute("data-key")
+                );
+              }}>
               <option value="" disabled selected hidden>
                 Servicio
               </option>
               {servicios.map((servicio) => (
-                <option key={servicio.id} value={servicio.nombre}>
+                <option key={servicio.id} value={servicio.nombre} data-key={servicio.id}>
                   {servicio.nombre}
                 </option>
               ))}
