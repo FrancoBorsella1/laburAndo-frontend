@@ -46,20 +46,3 @@ function Detalles({ closeModal, publicacion }) {
 }
 
 export default Detalles;
-
-
-{/* 
-            <Modal.Header className="modal-header" closeButton>
-                <Modal.Title className='modal-title'>Detalles publicación</Modal.Title>
-            </Modal.Header>
-            <Modal.Body className="modal-body">
-
-            </Modal.Body>
-            <Modal.Footer className="modal-footer">
-                <button onClick={handleClose}>
-                Close
-                </button>
-                <button onClick={handleClose}>
-                Save Changes
-                </button>
-            </Modal.Footer> */}

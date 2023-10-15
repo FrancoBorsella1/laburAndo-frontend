@@ -16,18 +16,11 @@ function AltaPublicacion({ closeModal, onPublicar }) {
 
   const [publicacion, setPublicacion] = useState([]);
   const [localidadId, setLocalidadId] = useState(null);
-  //descripcion: "",
-  //duracionDias: "",
-  //fecha: "",
-  //titulo: "",
-  //idPersona: "",
-  //idLocalidad: "",
-  //servicio: "",
 
   const token = localStorage.getItem("token");
   const decoded = jwtDecode(token);
   const config = { headers: { Authorization: `Bearer ${token}` } };
-
+  console.log(config.headers.Authorization)
   useEffect(() => {
     axios
       .get(`http://localhost:3000/api/servicio`, config)
@@ -64,8 +57,7 @@ function AltaPublicacion({ closeModal, onPublicar }) {
       });
   };
 
-  const persistirPublicacion = async (event) => {
-    event.preventDefault();
+  const persistirPublicacion = async () => {
 
     //Para persisistir
     const fechaActual = new Date().toLocaleDateString();
@@ -85,11 +77,11 @@ function AltaPublicacion({ closeModal, onPublicar }) {
       const response = await axios.post(
         "http://localhost:3000/api/publicacion",
         publicacionPersistir,
-        config
+        config.headers
       );
       console.log("Publicacion exitosa: ", response.data);
     } catch (error) {
-      console.error("No se puede iniciar sesión: ", error);
+      console.error("Error en alta de publicación: ", error);
     }
   };
 
@@ -119,6 +111,7 @@ function AltaPublicacion({ closeModal, onPublicar }) {
     };
 
     onPublicar(nuevaPublicacion);
+    persistirPublicacion()
 
     setPublicacion({
       titulo: "",
