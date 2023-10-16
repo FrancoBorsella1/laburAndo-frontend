@@ -38,12 +38,11 @@ function Home() {
     //Funcion para cerrar la publicacion grande
     const closeDetalles = () => {
         setPublicacionAmpliada(null);
-        
     };
 
     //Manejar la ampliacion de la publicacion
-    const ampliarPublicacion = (publicacion) => {
-        setPublicacionAmpliada(publicacion);
+    const ampliarPublicacion = (idProp) => {
+        setPublicacionAmpliada(idProp);
     }
     //Manejar el estado del modal
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -80,7 +79,7 @@ function Home() {
                         ))}
 
                         {publicacionAmpliada && (
-                            <Detalles publicacion={publicacionAmpliada} closeModal={closeDetalles}/>
+                            <Detalles idProp={publicacionAmpliada} closeModal={closeDetalles}/>
                         )}
                 </div>
                 {isModalOpen && (
