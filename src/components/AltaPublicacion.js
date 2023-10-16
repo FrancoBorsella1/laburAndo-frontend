@@ -5,7 +5,7 @@ import "../styles/AltaPublicacion.css";
 import axios from "axios";
 import jwtDecode from "jwt-decode"; //npm install jwt-decode
 
-function AltaPublicacion({ closeModal, onPublicar }) {
+function AltaPublicacion({ closeModal }) {
   //variables de estado para llenar los filtros
   const [servicios, setServicios] = useState([]);
   const [provincias, setProvincias] = useState([]);
@@ -51,7 +51,6 @@ function AltaPublicacion({ closeModal, onPublicar }) {
   const handleProvinciaChange = (event) => {
     const nuevaProvinciaSeleccionada = event.target.value;
     setProvinciaSeleccionada(nuevaProvinciaSeleccionada);
-    console.log("seleccionada: ", nuevaProvinciaSeleccionada);
 
     axios
       .get(
@@ -72,10 +71,9 @@ function AltaPublicacion({ closeModal, onPublicar }) {
     const fechaActual = new Date();
     const año = fechaActual.getFullYear();
     const mes = (fechaActual.getMonth() + 1).toString().padStart(2, '0'); 
-    const día = fechaActual.getDate().toString().padStart(2, '0'); 
+    const dia = fechaActual.getDate().toString().padStart(2, '0'); 
 
-    const fechaPublicacionActual = `${año}/${mes}/${día}`;
-    console.log("date: ", fechaPublicacionActual);
+    const fechaPublicacionActual = `${año}/${mes}/${dia}`;
 
     const publicacionPersistir = {
       descripcion: publicacion.descripcion,
@@ -101,6 +99,7 @@ function AltaPublicacion({ closeModal, onPublicar }) {
     }
   };
 
+  //Click en el botón Publicar
   const handleSubmit = (e) => {
     e.preventDefault();
     //Evitar publicaciones sin titulo o vacías
@@ -114,20 +113,9 @@ function AltaPublicacion({ closeModal, onPublicar }) {
       alert("Por favor, complete todos los campos.");
       console.log("Por favor, complete todos los campos.");
       return;
+    } else {
+      persistirPublicacion() //Se ejecuta la función para persistir la publicación 
     }
-
-    const fechaActual = new Date().toLocaleDateString();
-    const nuevaPublicacion = { //Publicación stática que se manda al home (que no se guarda en la BD)
-      titulo: publicacion.titulo,
-      descripcion: publicacion.descripcion,
-      servicio: servicioSeleccionado,
-      provincia: provinciaSeleccionada,
-      localidad: localidadSeleccionada,
-      fecha: fechaActual,
-    };
-    onPublicar(nuevaPublicacion);
-
-    persistirPublicacion() //Se ejecuta la función para persistir la publicación 
 
     setPublicacion({
       titulo: "",
@@ -176,6 +164,7 @@ function AltaPublicacion({ closeModal, onPublicar }) {
 
         <div className="modal-footer">
           <div className="alta-publicacion-opciones">
+            {/* Servicio */}
             <select
               name="Servicio"
               value={servicioSeleccionado}
@@ -195,6 +184,8 @@ function AltaPublicacion({ closeModal, onPublicar }) {
                 </option>
               ))}
             </select>
+
+            {/* provincia */}
             <select
               name="Provincia"
               value={provinciaSeleccionada}
@@ -209,6 +200,8 @@ function AltaPublicacion({ closeModal, onPublicar }) {
                 </option>
               ))}
             </select>
+
+            {/* Localidad */}
             <select
               name="Localidad"
               value={localidadSeleccionada}
@@ -233,6 +226,7 @@ function AltaPublicacion({ closeModal, onPublicar }) {
                   {localidad.nombre}
                 </option>
               ))}
+
             </select>
           </div>
           <button type="button" onClick={handleSubmit}>
