@@ -1,0 +1,56 @@
+@import 'generales.css';
+
+/* Generales */
+
+/* Contenddores */
+#contenedor-resena{
+    min-height: 170px; /*header:50px + content:120px*/
+    width: 550px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 25px;
+}
+
+#contenedor-resena .resena-header{
+    background-color: var(--secundary);
+    height: 50px;
+    border-radius: 50px 50px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+}
+
+#contenedor-resena .resena-content{
+    background-color: var(--claro);
+    min-height: 120px;
+    border-radius: 0 0 50px 50px;
+    padding: 0 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: end;
+}
+
+/* Elementos independientes */
+#contenedor-resena span {
+    font-weight: bold;
+}
+
+#contenedor-resena .resena-header p {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#contenedor-resena .resena-content p {
+    text-align: left;
+    width: 100%;
+    margin-top: 9px;
+    white-space: wrap;
+    overflow: auto;
+}
+
+#contenedor-resena .resena-calificacion {
+    margin-bottom: 20px;
+    text-align: right !important;
+}
