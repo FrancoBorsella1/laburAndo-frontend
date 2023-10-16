@@ -52,6 +52,7 @@ function Home() {
     };
     const closeModal = () => {
         setIsModalOpen(false);
+        window.location.reload();
     };
  
     //Renderizar las publicaciones chicas y la grande si está ampliada
