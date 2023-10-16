@@ -70,3 +70,6 @@
     margin: 3px;
 }
 
+#contenedor-login .boton-superior-aux{ /*Da un margin top para separar los botones de los input ("aux" porque se podría mejorar xd)*/
+    margin-top: 20px;
+}

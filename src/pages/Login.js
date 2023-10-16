@@ -101,7 +101,7 @@ function Login() {
                         />
                         {passwordError && <p className='error-input'>{passwordError}</p>}
                         <Link>¿Olvidaste tu contraseña?</Link>
-                        <button type='submit' onClick={iniciarSesion}>Iniciar sesión</button>
+                        <button className='boton-superior-aux' type='submit' onClick={iniciarSesion}>Iniciar sesión</button>
                         <div className='linea-horizontal'></div>
                     </div>
                     <div className='contenedor-links'>

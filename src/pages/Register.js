@@ -11,10 +11,12 @@ function Register() {
     const [provincias, setProvincias] = useState([]);
     const [localidades, setLocalidades] = useState([]);
     const [provinciaSeleccionada, setProvinciaSeleccionada] = useState("");
+
     const token = localStorage.getItem("token");
     const config = { headers: { Authorization: `Bearer ${token}` } };
   
-    //Peticiones al servidor
+
+    //Peticiones GET al servidor
     useEffect(() => {
         axios
           .get(`http://localhost:3000/api/servicio`, config)
@@ -37,8 +39,6 @@ function Register() {
       const handleProvinciaChange = (event) => {
         const nuevaProvinciaSeleccionada = event.target.value;
         setProvinciaSeleccionada(nuevaProvinciaSeleccionada);
-        console.log("seleccionada: ", nuevaProvinciaSeleccionada);
-    
         axios
           .get(
             `http://localhost:3000/api/localidadesxprovincia/${nuevaProvinciaSeleccionada}`,
@@ -51,31 +51,8 @@ function Register() {
             console.error(error);
           });
       };
-    //Fin peticiones al servidor
+    //Fin: peticiones GET al servidor
 
-
-
-    //Definir estado para los datos del formulario
-    const [usuario, setUsuario] = useState({
-        nombre: '',
-        apellido: '',
-        email: '',
-        telefono: '',
-        clave: '',
-        repclave: '',
-        usuario: '',
-        servicio: 1, //id
-        idLocalidad: 1, //id or defecto, cambiar más adelante
-    });
-
-    const [tabActiva, setTabActiva] = useState(1);
-
-    //Manejar cambio de tabs
-    const handleTabChange = (tab) => {
-        setTabActiva(tab);
-    };
-
-    //Manejar cambios en los campos del formulario
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setUsuario({
@@ -85,6 +62,10 @@ function Register() {
     };
 
     //Validaciones por tabs
+    const [tabActiva, setTabActiva] = useState(1);
+    const handleTabChange = (tab) => {
+        setTabActiva(tab);
+    };
     const [erroresTab1, setErroresTab1] = useState({
         email: '',
         usuario: '',
@@ -131,7 +112,6 @@ function Register() {
         setErroresTab1(nuevosErroresTab1);
         return erroresEncontrados;
     }
-
     const [erroresTab2, setErroresTab2] = useState({
         nombre: '',
         apellido: '',
@@ -164,18 +144,17 @@ function Register() {
         setErroresTab2(nuevosErrores);
         return erroresEncontrados;
     }
-
     const [erroresTab3, setErroresTab3] = useState({
         servicio: '',
         provincia: '',
-        idLocalidad: '',
+        localidad: '',
     });
     function validarTab3() { /*servicio, provincia, localidad*/
         let erroresEncontrados = false;
         let nuevosErrores = {
             servicio: '',
             provincia: '',
-            idLocalidad: '',
+            localidad: '',
         };
             if (usuario.servicio == 'Servicio') {
                 nuevosErrores.servicio = 'Debe seleccionar un servicio'
@@ -186,38 +165,50 @@ function Register() {
                 erroresEncontrados = true;
             }
             if (usuario.idLocalidad == 'Localidad') {
-                nuevosErrores.idLocalidad = 'Debe seleccionar una localidad'
+                nuevosErrores.localidad = 'Debe seleccionar una localidad'
                 erroresEncontrados = true;
             }
         setErroresTab3(nuevosErrores);
         return erroresEncontrados;
     }
+    //FIN: validaciones por tabs
 
+    //OPeticiones POST
+    const [usuario, setUsuario] = useState({
+        nombre: '',
+        apellido: '',
+        email: '',
+        telefono: '',
+        clave: '',
+        repclave: '',
+        usuario: '',
+        servicios: [],
+        idLocalidad: null,
+        descripcion: null,
+        imagenAdjunta: null,
+    });
     const agregarUsuario = async (event) => {
         event.preventDefault();
+        console.log("usuario a agregar:", usuario)
 
-        // if (validarTab3()) {
-        //     return;
-        // }
+        if (validarTab3()) {
+            return;
+        }
         try{
             const response = await axios.post('http://localhost:3000/api/usuario', usuario);
             console.log('Usuario registrado exitosamente: ', response.data);
             abrirModal();
-            console.log(modalAbierto)
         } catch (error) {
             console.error('Error al registrar usuario: ', error);
         }
     };
+ 
 
     //Manejo del modal confirmación
     const [modalAbierto, setModalAbierto] = useState(false);
 
     const abrirModal = () => {
         setModalAbierto(true);
-    };
-
-    const cerrarModal = () => {
-        setModalAbierto(false);
     };
 
 
@@ -230,7 +221,6 @@ function Register() {
                     <img src={logo} alt='Logo' className='logo-grande'></img>
                     <h1>Tu próximo laburo está a un click de distancia.</h1>
                 </div>
-
                 <form className='formulario-registro' onSubmit={agregarUsuario}>
                     <div className='contenedor-inputs'>
                         {tabActiva === 1 && (
@@ -269,7 +259,6 @@ function Register() {
                                     onChange={handleInputChange}
                                 /> 
                                 {erroresTab1.repclave && <p className='error'>{erroresTab1.repclave}</p>}
-                                {/* <button className='boton-superior-aux' type="button" onClick={() => handleTabChange(2)}> */}
                                 <button className='boton-superior-aux' type="button"  onClick={() => {
                                     if (!validarTab1()) {
                                         handleTabChange(2);
@@ -322,18 +311,20 @@ function Register() {
                             <>
                                 <h2>Registro</h2>
                                 <small>Para personalizar su búsqueda: </small>
-
-
-                                <select name="Servicio">
+                                <select 
+                                    name="Servicio" 
+                                    onChange={(e) => setUsuario({...usuario, servicios: e.target.value})}
+                                >
                                     <option value="" disabled selected hidden>
                                     Servicio
                                     </option>
                                     {servicios.map((servicio) => (
-                                    <option key={servicio.id} value={servicio.nombre}>
-                                        {servicio.nombre}
-                                    </option>
+                                        <option key={servicio.id} value={servicio.id}>
+                                            {servicio.nombre}
+                                        </option>
                                     ))}
                                 </select>
+
                                 {erroresTab3.servicio && <p className='error'>{erroresTab3.servicio}</p>}
 
                                 <select
@@ -350,16 +341,16 @@ function Register() {
                                 </select>
                                 {erroresTab3.provincia && <p className='error'>{erroresTab3.provincia}</p>}
 
-                                <select name="Localidad">
+                                <select name="Localidad" onChange={(e) => setUsuario({ ...usuario, idLocalidad: e.target.value })}>
                                     <option value="" disabled selected hidden> Localidad </option>
                                     {localidades.map((localidad) => (
-                                    <option key={localidad.id} value={localidad.nombre}>
+                                        <option key={localidad.id} value={localidad.id}>
                                         {localidad.nombre}
                                     </option>
                                     ))}
                                 </select>
 
-                                {erroresTab3.idLocalidad && <p className='error'>{erroresTab3.idLocalidad}</p>}
+                                {erroresTab3.localidad && <p className='error'>{erroresTab3.localidad}</p>}
                                 <button className='boton-superior-aux' id='boton-atras' type='button' onClick={() => handleTabChange(2)}>Atrás</button>
                                 <button type='submit'>Registrarse</button>
                                 {modalAbierto && (<RegistroExitoso nombre={ (usuario.nombre).toUpperCase()}/>)}
