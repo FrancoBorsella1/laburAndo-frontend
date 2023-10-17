@@ -20,6 +20,13 @@ function Detalles({ closeModal, idProp }) {
       });
   }, []);
   
+  let fecha = '';
+  let fechaConvertida = '';
+
+  if (publicacionDetalles.fechaPublicacion){
+    fecha = new Date(publicacionDetalles.fechaPublicacion);
+    fechaConvertida = fecha.toLocaleDateString();
+  }
 
   return (
     <div className="modalBackground">
@@ -58,7 +65,7 @@ function Detalles({ closeModal, idProp }) {
         </div>
 
         <div className="modal-footer">
-            <p id="fecha-publicacion">{publicacionDetalles.fechaPublicacion ? publicacionDetalles.fechaPublicacion: "cargando..."}</p>
+            <p id="fecha-publicacion">{fechaConvertida ? fechaConvertida: "cargando..."}</p>
         </div>
       </div>
     </div>

@@ -4,12 +4,13 @@ import { faUpRightAndDownLeftFromCenter } from "@fortawesome/free-solid-svg-icon
 import "../styles/Publicacion.css";
 
 function Publicacion({ idProp, tituloProp, fechaProp, servicioProp, localidadProp, onAmpliar }) {
-
+    const fecha = new Date(fechaProp);
+    const fechaConvertida = fecha.toLocaleDateString();
     return(
         <article id="contenedor-publicacion">
             <div className="publicacion-header">
                 <p className="publicacion-titulo">{tituloProp}</p>
-                <p className="fecha">{fechaProp}</p>
+                <p className="fecha">{fechaConvertida}</p>
             </div>
             <div className="publicacion-content">
                 <p className="publicacion-servicio"><span>Servicio:</span> {servicioProp}</p>

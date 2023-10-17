@@ -71,7 +71,7 @@ function Home() {
                             <Publicacion
                                 idProp={publicacion.id}
                                 tituloProp={publicacion.titulo}
-                                fechaProp={publicacion.fecha}
+                                fechaProp={publicacion.fechaPublicacion}
                                 servicioProp={publicacion.servicio.nombre}
                                 localidadProp={publicacion.localidad.nombre}
                                 onAmpliar={ampliarPublicacion}
