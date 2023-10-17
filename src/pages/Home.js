@@ -23,7 +23,7 @@ function Home() {
 
     useEffect(() => {
         axios
-            .get('http://localhost:3000/api/publicacion', config)
+            .get('http://200.58.106.151:3000/api/publicacion', config)
             .then((response) => {
                 setPublicacionesRecuperadas(response.data.publicaciones);
             })
