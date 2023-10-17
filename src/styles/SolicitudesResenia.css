@@ -4,46 +4,66 @@
 /* --------- Estructura: maquetado de divs, etc --------- */
 
 #lista-solicitudes {
-    height: 300px;
+    min-height: 150px;
+    max-height: 500px;
+    height: auto;
     width: 550px;
     z-index: 300;
+    overflow: auto;
 }
 
-/* #alta-resena #alta-resena-body {
+#lista-soliciudes #lista-solicitudes-body {
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.alta-resena-opciones {
-    height: 30px; width: 90%;
+#lista-solicitudes ul {
+    width: 100%;
     display: flex;
-    justify-content: right;
-    padding: 10px 0;
-    border-top: 1px solid var(--secundary);
-} */
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px;
+}
+
+#lista-solicitudes-botonera {
+    margin-right: 30px;
+}
 
 /* --------- Generales: más de 1 elemento --------- */
 
-/* --------- Independientes: 1 elemento --------- */
-/* 
-#alta-resena #alta-resena-descripcion {
-    height: 80%; width: 90%;
-    margin-top: 10px;
-    border-radius: 0;
-    resize: none;
-} 
-
-#alta-resena .alta-resena-opciones select{
-    background-color: var(--secundary);
-    height: 30px;
-    width: 120px;
-    font-size: 14px;
-    margin-right: 10px;
+#lista-solicitudes ul li{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
 }
 
-#alta-resena .alta-resena-boton {
+/* --------- Independientes: 1 elemento --------- */
+
+#lista-solicitudes ul li p {
+    width: 300px;
+    font-weight: bolder;
+    margin-left: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#lista-solicitudes ul li button {
     width: 120px;
     height: 30px;
     font-size: 14px;
     margin-right: 5px;
-} */
+}
+
+#lista-solicitudes #eliminar-solicitud {
+    width: 30px;
+    background-color: var(--inactive);
+}
+
+#lista-solicitudes #eliminar-solicitud:active {
+    background-color: rgb(194, 0, 0);
+    color: white;
+}
