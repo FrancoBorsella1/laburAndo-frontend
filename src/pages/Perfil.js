@@ -9,7 +9,7 @@ import axios from 'axios';
 import jwtDecode from "jwt-decode"; //npm install jwt-decode
 import { Link } from 'react-router-dom';
 import Resena from '../components/Resena';
-import SolicitudesResenia from '../components/SolicitudesReseña';
+import SolicitudesResenia from '../components/SolicitudesResenia';
 
 
 function Perfil() {
