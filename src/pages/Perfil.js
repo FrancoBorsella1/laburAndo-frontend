@@ -19,7 +19,7 @@ function Perfil() {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/usuario/${decoded.id}`, config)
+        axios.get(`http://200.58.106.151:3000/api/usuario/${decoded.id}`, config)
             .then((response) => {
                 setUser(response.data);
             })
@@ -73,10 +73,13 @@ function Perfil() {
                     <div className="linea-horizontal"></div>
                 </div>
                 <div id='contenedor-resenas'>
-                    <Resena/>
-                    <Resena/>
-                    <Resena/>
-                    <Resena/>
+                    <Resena
+                        resenadorProp={'Franco Borsella'}
+                        fechaProp={'16/10/2023'}
+                        descripcionProp={'Este tipo es malísimo, se me quemó toda la casa'}
+                        calificacionProp={1}
+                    />
+
                 </div>
             </main>
 
