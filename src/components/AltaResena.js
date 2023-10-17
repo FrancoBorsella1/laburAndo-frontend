@@ -6,16 +6,16 @@ import "../styles/modal.css"
 
 function AltaResena({ closeModal }) {
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        closeModal(true);
-    }
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     closeModal(true);
+    // }
 
     return(
         <div className="modalBackground">
             <div className="contenedor-modal" id="alta-resena">
                 <div className="modal-header">
-                    <p>Nueva Reseña: Usuario</p>
+                    <p>Nueva reseña: Usuario</p>
                     <button id="cerrar-modal" onClick={() => closeModal(false)}>
                         <FontAwesomeIcon icon={faXmark} id="close-icon" />
                     </button>
@@ -36,7 +36,7 @@ function AltaResena({ closeModal }) {
                             <option value={4}>4</option>
                             <option value={5}>5</option>
                         </select>
-                        <button className="alta-resena-boton" type="button" onClick={handleSubmit}>Valorar</button>
+                        {/* <button className="alta-resena-boton" type="button" onClick={handleSubmit}>Valorar</button> */}
                     </div>
                 </div>
             </div>
