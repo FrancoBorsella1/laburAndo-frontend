@@ -1,0 +1,47 @@
+@import 'generales.css';
+
+/* Generales */
+
+/* Contenedores */
+#confirmar-resena{
+    height: 230px;
+    width: 500px;
+}
+
+#confirmar-resena #confirmar-resena-body {
+    display: flex;
+    flex-direction: row;
+    margin: 0 35px;
+    justify-content: center;
+    text-align: center;
+}
+
+#confirmar-resena #confirmar-resena-footer{
+    height: 30px; width: 100%;
+    display: flex;
+    justify-content: right;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Elementos independientes */
+
+#confirmar-resena-footer button{
+    width: 120px;
+    height: 30px;
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+#confirmar-resena-footer .boton-cancelar{
+    background-color: var(--inactive);
+}
+
+#confirmar-resena-body #exclamation-icon {
+    width: 60px;
+    height: 100px;
+}
+
+#confirmar-resena-footer .boton-confirmar {
+    margin-right: 30px;
+}
