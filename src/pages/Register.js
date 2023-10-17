@@ -19,7 +19,7 @@ function Register() {
     //Peticiones GET al servidor
     useEffect(() => {
         axios
-          .get(`http://localhost:3000/api/servicio`, config)
+          .get(`http://200.58.106.151:3000/api/servicio`, config)
           .then((response) => {
             setServicios(response.data.servicios);
           })
@@ -27,7 +27,7 @@ function Register() {
             console.error(error);
           });
         axios
-          .get(`http://localhost:3000/api/provincia`, config)
+          .get(`http://200.58.106.151:3000/api/provincia`, config)
           .then((response) => {
             setProvincias(response.data.provincias);
           })
@@ -41,7 +41,7 @@ function Register() {
         setProvinciaSeleccionada(nuevaProvinciaSeleccionada);
         axios
           .get(
-            `http://localhost:3000/api/localidadesxprovincia/${nuevaProvinciaSeleccionada}`,
+            `http://200.58.106.151:3000/api/localidadesxprovincia/${nuevaProvinciaSeleccionada}`,
             config
           )
           .then((response) => {
@@ -195,7 +195,7 @@ function Register() {
             return;
         }
         try{
-            const response = await axios.post('http://localhost:3000/api/usuario', usuario);
+            const response = await axios.post('http://200.58.106.151:3000/api/usuario', usuario);
             console.log('Usuario registrado exitosamente: ', response.data);
             abrirModal();
         } catch (error) {
