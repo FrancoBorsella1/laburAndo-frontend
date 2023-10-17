@@ -27,12 +27,23 @@ function Perfil() {
     const cerrarModalListaSolicitudes = () => {
         setModalListaSolicitudes(false);
     }
-    let bandera = false; 
+    
+    /*Accede a servicio asociado y descripción del servicio asociado*/
+    let servicioAsociado = '';
+    let servicioDescripcion  = '';
+
     useEffect(() => {
         axios.get(`http://200.58.106.151:3000/api/usuario/${decoded.id}`, config)
             .then((response) => {
                 setUser(response.data);
-                bandera = true; 
+                if (user && user.servicios){
+                    const servicio = user.servicios[0];
+                    servicioAsociado = servicio.nombre;
+                    servicioDescripcion = servicio.descripcion;
+                }else {
+                    servicioAsociado = 'No brindo servicios';
+                    servicioDescripcion = 'Soy una persona que siempre necesita a alguien para todo. A veces necesito a alguien para resolver problemas de limpieza, arreglar cables o cañerías';
+                }
             })
             .catch((error) => {
                 console.error(error);
@@ -40,18 +51,6 @@ function Perfil() {
     },[]);
     console.log("usuario: ", user)
     
-    /*Accede a servicio asociado y descripción del servicio asociado*/
-        let servicioAsociado = '';
-        let servicioDescripcion  = '';
-
-    if (user && user.servicios){
-        const servicio = user.servicios[0];
-        servicioAsociado = servicio.nombre;
-        servicioDescripcion = servicio.descripcion;
-    }else {
-        servicioAsociado = 'No brindo servicios';
-        servicioDescripcion = 'Soy una persona que siempre necesita a alguien para todo. A veces necesito a alguien para resolver problemas de limpieza, arreglar cables o cañerías';
-    }
 
     return (
         <>
