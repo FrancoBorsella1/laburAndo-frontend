@@ -5,12 +5,12 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faEnvelope, faLocationDot, faStar, faCaretDown } from "@fortawesome/free-solid-svg-icons";
-import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import axios from 'axios';
 import jwtDecode from "jwt-decode"; //npm install jwt-decode
 import { Link } from 'react-router-dom';
 import Resena from '../components/Resena';
-import AltaResena from '../components/AltaResena';
+import SolicitudesResenia from '../components/SolicitudesReseña';
+
 
 function Perfil() {
     const token = localStorage.getItem("token");
@@ -18,15 +18,15 @@ function Perfil() {
     const config = { headers: { Authorization: `Bearer ${token}` } };
     const [user, setUser] = useState({});
 
-    //Manejar el estado del modal
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const openModal = () => {
-        setIsModalOpen(true);
-    }
-    const closeModal = () => {
-        setIsModalOpen(false);
-    }
 
+    // Manejo del modal: lista de solicitudes de reseña
+    const [modalListaSolicitudes, setModalListaSolicitudes] = useState(false);
+    const abrirModalListaSolicitudes = () => {
+        setModalListaSolicitudes(true);
+    }
+    const cerrarModalListaSolicitudes = () => {
+        setModalListaSolicitudes(false);
+    }
 
     useEffect(() => {
         axios.get(`http://200.58.106.151:3000/api/usuario/${decoded.id}`, config)
@@ -60,9 +60,6 @@ function Perfil() {
                         <div className='perfil-contacto'>
                             <div className='perfil-contacto-datos'>
                                 <div className='item-informacion'>
-                                    <FontAwesomeIcon icon={faWhatsapp} beatFade  size="lg" style={{color: "2dd100", margin:"0 8px"}} id="icono-whatsapp"/><Link>Enviar un mensaje</Link>
-                                </div>
-                                <div className='item-informacion'>
                                     <FontAwesomeIcon icon={faPhone} id="icono-telefono"/><span> {user.telefono ? user.telefono: '1111111111'}</span>
                                 </div>
                                 <div className='item-informacion'>
@@ -71,7 +68,7 @@ function Perfil() {
                                 <div className='item-informacion'>
                                     <FontAwesomeIcon icon={faLocationDot} id="icono-ubicacion"/><span> {user.localidad && user.apellido ? user.localidad.nombre + ', ' + user.localidad.provincia.nombre: 'Algun lugar'} </span>
                                 </div>
-                                <button onClick={openModal}>AGREGAR RESEÑA</button>
+                                <button onClick={abrirModalListaSolicitudes}>VER SOLICITUDES DE RESEÑA</button>
                             </div>
                         </div>
                     </div>
@@ -91,30 +88,9 @@ function Perfil() {
                     />
 
                 </div>
-                {isModalOpen && (
-                <AltaResena closeModal={closeModal}/>
-                )}
+                {/* MODAL lista de solicitudes */}
+                {modalListaSolicitudes && (<SolicitudesResenia closeModal={cerrarModalListaSolicitudes}/>)}
             </main>
-
-            {/* <main id="contenedor-perfil">
-                <div id='tarjeta-perfil'>
-                    <div className='perfil-foto'>
-                        <img alt="foto"/>
-                    </div>
-                    <div className='perfil-informacion'>
-                        <p className='perfil-nombre'>{user.nombre && user.apellido ? user.nombre + ' ' + user.apellido: 'Cargando...'}</p>
-                        <div className='item-informacion'>
-                            <FontAwesomeIcon icon={faPhone} id="icono-telefono"/><span> {user.telefono ? user.telefono: 'Cargando...'}</span>
-                        </div>
-                        <div className='item-informacion'>
-                            <FontAwesomeIcon icon={faEnvelope} id="icono-mail"/><span> {user.email ? user.email: 'Cargando...'}</span>
-                        </div>
-                        <div className='item-informacion'>
-                            <FontAwesomeIcon icon={faLocationDot} id="icono-ubicacion"/><span> {user.localidad && user.apellido ? user.localidad.nombre + ', ' + user.localidad.provincia.nombre: 'Cargando...'} </span>
-                        </div>
-                    </div>
-                </div>
-            </main> */}
             <Footer/>
         </>
     );
