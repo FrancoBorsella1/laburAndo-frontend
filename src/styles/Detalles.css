@@ -71,7 +71,10 @@
     max-width: 100%;
     height: auto;
   }
-  #detalles-publicacion a {
+  #detalles-publicacion .contenedor-detalles-perfil button {
     margin-top: 15px;
+    background-color:rgba(9, 5, 0, 0);
+    width: auto;
+    color: var(--primary);
   }
 
