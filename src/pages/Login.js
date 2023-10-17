@@ -56,7 +56,7 @@ function Login() {
         }
 
         try {
-          const response = await axios.post("http://localhost:3000/api/auth",usuario);
+          const response = await axios.post("http://200.58.106.151:3000/api/auth",usuario);
           console.log("Login exitoso: ", response.data.token);
     
           //Almacena los datos del usuario autenticado en el estado
@@ -85,7 +85,7 @@ function Login() {
                         <input 
                             type='text'
                             name="email" 
-                            placeholder='Correo electrónico'
+                            placeholder='Usuario / Correo electrónico'
                             value={usuario.email}
                             onChange={handleInputChange}
                             required
@@ -101,7 +101,7 @@ function Login() {
                         />
                         {passwordError && <p className='error-input'>{passwordError}</p>}
                         <Link>¿Olvidaste tu contraseña?</Link>
-                        <button type='submit' onClick={iniciarSesion}>Iniciar sesión</button>
+                        <button className='boton-superior-aux' type='submit' onClick={iniciarSesion}>Iniciar sesión</button>
                         <div className='linea-horizontal'></div>
                     </div>
                     <div className='contenedor-links'>
