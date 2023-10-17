@@ -10,6 +10,7 @@ import axios from 'axios';
 import jwtDecode from "jwt-decode"; //npm install jwt-decode
 import { Link } from 'react-router-dom';
 import Resena from '../components/Resena';
+import AltaResena from '../components/AltaResena';
 
 function Perfil() {
     const token = localStorage.getItem("token");
@@ -17,9 +18,18 @@ function Perfil() {
     const config = { headers: { Authorization: `Bearer ${token}` } };
     const [user, setUser] = useState({});
 
+    //Manejar el estado del modal
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const openModal = () => {
+        setIsModalOpen(true);
+    }
+    const closeModal = () => {
+        setIsModalOpen(false);
+    }
+
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/usuario/${decoded.id}`, config)
+        axios.get(`http://200.58.106.151:3000/api/usuario/${decoded.id}`, config)
             .then((response) => {
                 setUser(response.data);
             })
@@ -61,7 +71,7 @@ function Perfil() {
                                 <div className='item-informacion'>
                                     <FontAwesomeIcon icon={faLocationDot} id="icono-ubicacion"/><span> {user.localidad && user.apellido ? user.localidad.nombre + ', ' + user.localidad.provincia.nombre: 'Algun lugar'} </span>
                                 </div>
-                                <button>SOLICITAR RESEÑA</button>
+                                <button onClick={openModal}>AGREGAR RESEÑA</button>
                             </div>
                         </div>
                     </div>
@@ -73,11 +83,17 @@ function Perfil() {
                     <div className="linea-horizontal"></div>
                 </div>
                 <div id='contenedor-resenas'>
-                    <Resena/>
-                    <Resena/>
-                    <Resena/>
-                    <Resena/>
+                    <Resena
+                        resenadorProp={'Franco Borsella'}
+                        fechaProp={'16/10/2023'}
+                        descripcionProp={'Este tipo es malísimo, se me quemó toda la casa'}
+                        calificacionProp={1}
+                    />
+
                 </div>
+                {isModalOpen && (
+                <AltaResena closeModal={closeModal}/>
+                )}
             </main>
 
             {/* <main id="contenedor-perfil">
