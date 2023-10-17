@@ -22,7 +22,6 @@ function Detalles({ closeModal, idProp }) {
         console.error(error);
       });
   }, []);
-  
   let fecha = '';
   let fechaConvertida = '';
 
@@ -30,6 +29,14 @@ function Detalles({ closeModal, idProp }) {
     fecha = new Date(publicacionDetalles.fechaPublicacion);
     fechaConvertida = fecha.toLocaleDateString();
   }
+
+  let idContratista = '';
+  if (publicacionDetalles && publicacionDetalles.persona){
+    idContratista = publicacionDetalles.persona.id;
+  }else{
+    idContratista = 1;
+  }
+  console.log("prueba id:",idContratista)
 
   return (
     <div className="modalBackground">
@@ -44,7 +51,7 @@ function Detalles({ closeModal, idProp }) {
         <div className="modal-body">
           <div className="contenedor-detalles">
             <div className="detalles-content">
-              <p>{publicacionDetalles.descripcion ? publicacionDetalles.descripcion: "cargando..."}</p>
+              <p>{publicacionDetalles.descripcion ? publicacionDetalles.descripcion: "[sin descripción]"}</p>
             </div>
             <div className="detalles-content">
               <p className="detalles-servicio"><span>Servicio: </span>{publicacionDetalles.servicio ? (publicacionDetalles.servicio.nombre ? publicacionDetalles.servicio.nombre : "cargando...") : "cargando..." }</p>
@@ -61,7 +68,7 @@ function Detalles({ closeModal, idProp }) {
               <FontAwesomeIcon icon={faPhone} />
               <p>{publicacionDetalles.persona ? publicacionDetalles.persona.telefono: "cargando..." }</p>
             </div>
-            <button onClick={()=>{navigate("/PerfilVisitado"); }}>Ir al perfil</button>
+            <button onClick={()=>{navigate(`/PerfilVisitado/${idContratista}`);}}>Ir al perfil</button>
           </div>
         </div>
 

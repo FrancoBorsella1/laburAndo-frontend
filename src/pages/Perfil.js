@@ -27,17 +27,31 @@ function Perfil() {
     const cerrarModalListaSolicitudes = () => {
         setModalListaSolicitudes(false);
     }
-
+    let bandera = false; 
     useEffect(() => {
         axios.get(`http://200.58.106.151:3000/api/usuario/${decoded.id}`, config)
             .then((response) => {
                 setUser(response.data);
+                bandera = true; 
             })
             .catch((error) => {
                 console.error(error);
             });      
     },[]);
-    console.log("estado: ", user)
+    console.log("usuario: ", user)
+    
+    /*Accede a servicio asociado y descripción del servicio asociado*/
+        let servicioAsociado = '';
+        let servicioDescripcion  = '';
+
+    if (user && user.servicios){
+        const servicio = user.servicios[0];
+        servicioAsociado = servicio.nombre;
+        servicioDescripcion = servicio.descripcion;
+    }else {
+        servicioAsociado = 'No brindo servicios';
+        servicioDescripcion = 'Soy una persona que siempre necesita a alguien para todo. A veces necesito a alguien para resolver problemas de limpieza, arreglar cables o cañerías';
+    }
 
     return (
         <>
@@ -45,28 +59,33 @@ function Perfil() {
             <main id="contenedor-perfil">
                 <div id='tarjeta-perfil'>
                     <div className='tarjeta-perfil-header'>
-                        <p className='perfil-nombre'>{user.nombre && user.apellido ? user.nombre + ' ' + user.apellido: 'Juan Perez'}</p>
+                        <p className='perfil-nombre'>{user.nombre && user.apellido ? user.nombre + ' ' + user.apellido: ' '}</p>
                         <div id='perfil-promedio-resena'>
                             <span>2.5/5</span><FontAwesomeIcon icon={faStar} style={{color: "#ffd500",}} id="icono-resena"/>
                         </div>
                     </div>
                     <div className='tarjeta-perfil-body'>
                         <div className='perfil-informacion'>
+                            <h4>
+                                {servicioAsociado}
+                            </h4>
                             <div className='perfil-foto'>
                                 <img alt="foto"/>
                             </div>
-                            <p className='perfil-descripcion'>Hace 10 años realizo trabajos de electricidad, mi espe asdfhaksdhf kasdhfkahdksjf hasdfh kjahsdfkj ahskdjfh akjsdhfajksdh kksfadhsf kjlahsdon las instalaciones eléctricas. Me considero una persona responsable y comprometida con su trabajo.</p>
+                            <p className='perfil-descripcion'>
+                                {servicioDescripcion}    
+                            </p>
                         </div>
                         <div className='perfil-contacto'>
                             <div className='perfil-contacto-datos'>
                                 <div className='item-informacion'>
-                                    <FontAwesomeIcon icon={faPhone} id="icono-telefono"/><span> {user.telefono ? user.telefono: '1111111111'}</span>
+                                    <FontAwesomeIcon icon={faPhone} id="icono-telefono"/><span> {user.telefono ? user.telefono: ' '}</span>
                                 </div>
                                 <div className='item-informacion'>
-                                    <FontAwesomeIcon icon={faEnvelope} id="icono-mail"/><span> {user.email ? user.email: 'mail@mail.com'}</span>
+                                    <FontAwesomeIcon icon={faEnvelope} id="icono-mail"/><span> {user.email ? user.email: ' '}</span>
                                 </div>
                                 <div className='item-informacion'>
-                                    <FontAwesomeIcon icon={faLocationDot} id="icono-ubicacion"/><span> {user.localidad && user.apellido ? user.localidad.nombre + ', ' + user.localidad.provincia.nombre: 'Algun lugar'} </span>
+                                    <FontAwesomeIcon icon={faLocationDot} id="icono-ubicacion"/><span> {user.localidad && user.apellido ? user.localidad.nombre + ', ' + user.localidad.provincia.nombre: ' '} </span>
                                 </div>
                                 <button onClick={abrirModalListaSolicitudes}>VER SOLICITUDES DE RESEÑA</button>
                             </div>
