@@ -1,0 +1,48 @@
+@import 'generales.css';
+@import 'modal.css';
+
+/* --------- Estructura: maquetado de divs, etc --------- */
+
+#alta-resena {
+    height: 300px;
+    width: 550px;
+}
+
+#alta-resena #alta-resena-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.alta-resena-opciones {
+    height: 30px; width: 90%;
+    display: flex;
+    justify-content: right;
+    padding: 10px 0;
+    border-top: 1px solid var(--secundary);
+}
+
+/* --------- Generales: más de 1 elemento --------- */
+
+/* --------- Independientes: 1 elemento --------- */
+
+#alta-resena #alta-resena-descripcion {
+    height: 80%; width: 90%;
+    margin-top: 10px;
+    border-radius: 0;
+    resize: none;
+} 
+
+#alta-resena .alta-resena-opciones select{
+    background-color: var(--secundary);
+    height: 30px;
+    width: 120px;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+#alta-resena .alta-resena-boton {
+    width: 120px;
+    height: 30px;
+    font-size: 14px;
+    margin-right: 5px;
+}
