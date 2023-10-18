@@ -29,29 +29,19 @@ function PerfilVisitado() {
     const closeModal = () => {
         setIsModalOpen(false);
     }
+    let sinServicioAsociado = 'No brindo servicios';
+    let sinServicioDescripcion = 'Soy una persona que siempre necesita a alguien para todo. A veces necesito a alguien para resolver problemas de limpieza, arreglar cables o cañerías';
 
 
     useEffect(() => {
         axios.get(`http://200.58.106.151:3000/api/usuario/${id}`, config)
             .then((response) => {
                 setUser(response.data);
-                if (user && user.servicios){
-                    const servicio = user.servicios[0];
-                    servicioAsociado = servicio.nombre;
-                    servicioDescripcion = servicio.descripcion;
-                }else {
-                    servicioAsociado = 'No brindo servicios';
-                    servicioDescripcion = 'Soy una persona que siempre necesita a alguien para todo. A veces necesito a alguien para resolver problemas de limpieza, arreglar cables o cañerías';
-                }
             })
             .catch((error) => {
                 console.error(error);
             });      
     },[]);
-
-    /*Accede a servicio asociado y descripción del servicio asociado*/
-
-
 
     return (
         <>
@@ -67,13 +57,13 @@ function PerfilVisitado() {
                     <div className='tarjeta-perfil-body'>
                         <div className='perfil-informacion'>
                             <h4>
-                                {servicioAsociado ? servicioAsociado : "No brindo servicios"}    
+                                {user.servicios && user.servicios.length > 0 ? user.servicios[0].nombre: sinServicioAsociado}
                             </h4>
                             <div className='perfil-foto'>
                                 <img alt="foto"/>
                             </div>
                             <p className='perfil-descripcion'>
-                                {servicioDescripcion ? servicioDescripcion : "Soy una persona que siempre necesita a alguien para todo. A veces necesito a alguien para resolver problemas de limpieza, arreglar cables o cañerías"}    
+                                {user.servicios && user.servicios.length > 0 ? user.servicios[0].descripcion: sinServicioDescripcion}
                             </p>
                         </div>
                         <div className='perfil-contacto'>
