@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import "../styles/Header.css";
 import axios from "axios";
 
-function Header({ onAbrirModal }) {
+function Header({ onAbrirModal, onCambioFiltro }) {
   const [servicios, setServicios] = useState([]);
   const [provincias, setProvincias] = useState([]);
   const [localidades, setLocalidades] = useState([]);
+  const [servicioSeleccionado, setServicioSeleccionado] = useState("");
   const [provinciaSeleccionada, setProvinciaSeleccionada] = useState("");
+  const [localidadSeleccionada, setLocalidadSeleccionada] = useState("");
   const token = localStorage.getItem("token");
   const config = { headers: { Authorization: `Bearer ${token}` } };
 
@@ -47,6 +49,27 @@ function Header({ onAbrirModal }) {
       });
   };
 
+  const handleServicioChange = (event) => {
+    const nuevoServicioSeleccionado = event.target.value;
+    setServicioSeleccionado(nuevoServicioSeleccionado);
+    console.log(" servicio seleccionado: ", nuevoServicioSeleccionado);
+  }
+
+  const handleLocalidadChange = (event) => {
+    const nuevaLocalidadSeleccionada = event.target.value;
+    setLocalidadSeleccionada(nuevaLocalidadSeleccionada);
+  }
+
+  const handleEnviarFiltros = (event) => {
+    event.preventDefault();
+    const filtros = {
+      servicio: servicioSeleccionado,
+      localidad: localidadSeleccionada,
+    }
+    onCambioFiltro(filtros);
+  }
+
+
   // --------------------------------------------------------------------------------------------
 
   return (
@@ -60,13 +83,17 @@ function Header({ onAbrirModal }) {
       <div className="linea-vertical"></div>
       <div className="contenedor-busqueda">
         <p>¿Estás buscando un trabajo?</p>
-        <form className="formulario-busqueda">
-          <select name="Servicio">
+        <form className="formulario-busqueda" onSubmit={handleEnviarFiltros}>
+          <select 
+            name="Servicio"
+            onChange={handleServicioChange}
+            value={servicioSeleccionado}
+          >
             <option value="" disabled selected hidden>
               Servicio
             </option>
             {servicios.map((servicio) => (
-              <option key={servicio.id} value={servicio.nombre}>
+              <option key={servicio.id} value={servicio.id}>
                 {servicio.nombre}
               </option>
             ))}
@@ -85,17 +112,21 @@ function Header({ onAbrirModal }) {
               </option>
             ))}
           </select>
-          <select name="Localidad">
+          <select 
+            name="Localidad"
+            onChange={handleLocalidadChange}
+            value={localidadSeleccionada}
+          >
             <option value="" disabled selected hidden>
               Localidad
             </option>
             {localidades.map((localidad) => (
-              <option key={localidad.id} value={localidad.nombre}>
+              <option key={localidad.id} value={localidad.id}>
                 {localidad.nombre}
               </option>
             ))}
           </select>
-          <button>Buscar</button>
+          <button type="submit">Buscar</button>
         </form>
       </div>
     </header>
