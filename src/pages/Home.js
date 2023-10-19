@@ -22,15 +22,29 @@ function Home() {
     const [publicacionesRecuperadas, setPublicacionesRecuperadas] = useState([]);
 
     useEffect(() => {
+        obtenerPublicaciones();
+    }, []);
+
+    const obtenerPublicaciones = (filtros = {}) => {
+        let endpoint = 'http://200.58.106.151:3000/api/publicacion';
+
+        if (filtros.servicio && filtros.localidad) {
+            endpoint += `/servicio-y-localidad/${filtros.servicio}/${filtros.localidad}`;
+          } else if (filtros.servicio) {
+            endpoint += `/servicio/${filtros.servicio}`;
+          } else if (filtros.localidad) {
+            endpoint += `/localidad/${filtros.localidad}`;
+        }
+
         axios
-            .get('http://200.58.106.151:3000/api/publicacion', config)
+            .get(endpoint, config)
             .then((response) => {
                 setPublicacionesRecuperadas(response.data.publicaciones);
             })
             .catch((error) => {
                 console.error('Error al obtener datos: ', error);
-            })
-    }, []);
+            });
+    }
 
     console.log('publicaciones recuperadass: ', publicacionesRecuperadas);
 
@@ -58,7 +72,11 @@ function Home() {
     return(
         <>
             <Navbar/>
-            <Header onAbrirModal={openModal}/>
+            <Header 
+                onAbrirModal={openModal}
+                onCambioFiltro={obtenerPublicaciones}
+            />
+
             <main id="contenedor-home">
                 <div className="home-linea-resultados">
                     <div className="linea-horizontal"></div>
@@ -71,7 +89,7 @@ function Home() {
                             <Publicacion
                                 idProp={publicacion.id}
                                 tituloProp={publicacion.titulo}
-                                fechaProp={publicacion.fecha}
+                                fechaProp={publicacion.fechaPublicacion}
                                 servicioProp={publicacion.servicio.nombre}
                                 localidadProp={publicacion.localidad.nombre}
                                 onAmpliar={ampliarPublicacion}
