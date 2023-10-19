@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faPhone } from "@fortawesome/free-solid-svg-icons";
 import '../styles/Detalles.css';
+import jwtDecode from "jwt-decode"; //npm install jwt-decode
 
 function Detalles({ closeModal, idProp }) {
   const navigate = useNavigate();
@@ -11,7 +12,8 @@ function Detalles({ closeModal, idProp }) {
   const token = localStorage.getItem("token");
   const config = { headers: { Authorization: `Bearer ${token}` } };
   const [publicacionDetalles, setPublicacionDetalles] = useState([]);
-
+  const decoded = jwtDecode(token);
+  const idLogeado = decoded.id;
 
   useEffect(() => {
     axios.get(`http://200.58.106.151:3000/api/publicacion/${idProp}`, config)
@@ -68,7 +70,7 @@ function Detalles({ closeModal, idProp }) {
               <FontAwesomeIcon icon={faPhone} />
               <p>{publicacionDetalles.persona ? publicacionDetalles.persona.telefono: "cargando..." }</p>
             </div>
-            <button onClick={()=>{navigate(`/PerfilVisitado/${idContratista}`);}}>Ir al perfil</button>
+            <button onClick={()=>{idContratista = idLogeado ? navigate(`/Perfil`):navigate(`/PerfilVisitado/${idContratista}`)}}>Ir al perfil</button>
           </div>
         </div>
 
