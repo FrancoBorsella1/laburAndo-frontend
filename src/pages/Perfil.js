@@ -28,6 +28,7 @@ function Perfil() {
         setModalListaSolicitudes(false);
     }
     
+    //Petición para completar los datos del usuario logeado
     useEffect(() => {
         axios.get(`http://200.58.106.151:3000/api/usuario/${decoded.id}`, config)
             .then((response) => {
@@ -41,6 +42,21 @@ function Perfil() {
     
     let sinServicioAsociado = 'No brindo servicios';
     let sinServicioDescripcion = 'Soy una persona que siempre necesita a alguien para todo. A veces necesito a alguien para resolver problemas de limpieza, arreglar cables o cañerías';
+
+    //Recuperación de reseñas correpsondientes al perfil del usuario logeado
+    const [resenasRecuperadas, setResenasRecuperadas] = useState([]);
+    useEffect(() => {
+        axios
+            .get(`http://200.58.106.151:3000/api/resenas/${decoded.id}`, config)
+            .then((response) => {
+                setResenasRecuperadas(response.data.reseñasRecibidas);
+            })
+            .catch((error) => {
+                console.error('Error al obtener datos: ', error);
+            })
+    }, []);
+    console.log('resenas recuperadass: ', resenasRecuperadas);
+
 
     return (
         <>
@@ -56,16 +72,13 @@ function Perfil() {
                     <div className='tarjeta-perfil-body'>
                         <div className='perfil-informacion'>
                             <h4>
-                                {/*servicioAsociado*/}
-                                {user.servicios ? user.servicios[0].nombre: sinServicioAsociado}
+                                {user.servicios && user.servicios.length > 0  ? user.servicios[0].nombre: sinServicioAsociado}
                             </h4>
                             <div className='perfil-foto'>
                                 <img alt="foto"/>
                             </div>
                             <p className='perfil-descripcion'>
-                                {/*servicioDescripcion*/}  
-                                {user.servicios ? user.servicios[0].descripcion: sinServicioDescripcion}
-
+                                {user.servicios && user.servicios.length > 0  ? user.servicios[0].descripcion: sinServicioDescripcion}
                             </p>
                         </div>
                         <div className='perfil-contacto'>
