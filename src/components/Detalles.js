@@ -70,7 +70,7 @@ function Detalles({ closeModal, idProp }) {
               <FontAwesomeIcon icon={faPhone} />
               <p>{publicacionDetalles.persona ? publicacionDetalles.persona.telefono: "cargando..." }</p>
             </div>
-            <button onClick={()=>{idContratista = idLogeado ? navigate(`/Perfil`):navigate(`/PerfilVisitado/${idContratista}`)}}>Ir al perfil</button>
+            <button onClick={()=>{idContratista == idLogeado ? navigate(`/Perfil`):navigate(`/PerfilVisitado/${idContratista}`)}}>Ir al perfil</button>
           </div>
         </div>
 
