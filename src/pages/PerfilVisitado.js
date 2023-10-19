@@ -113,7 +113,7 @@ function PerfilVisitado() {
                         ))}
                 </div>
                 {isModalOpen && (
-                <ConfirmacionResena closeModal={closeModal}/>
+                <ConfirmacionResena closeModal={closeModal} idCalificadorProp={id}/>
                 )}
             </main>
             <Footer/>
