@@ -115,7 +115,7 @@ function Perfil() {
                         ))}
                 </div>
                 {/* MODAL lista de solicitudes */}
-                {modalListaSolicitudes && (<SolicitudesResenia closeModal={cerrarModalListaSolicitudes}/>)}
+                {modalListaSolicitudes && (<SolicitudesResenia closeModal={cerrarModalListaSolicitudes} idCalificadorProp={decoded.id}/>)}
             </main>
             <Footer/>
         </>
