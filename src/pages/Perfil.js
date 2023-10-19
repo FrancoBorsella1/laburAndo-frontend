@@ -103,14 +103,16 @@ function Perfil() {
                     <FontAwesomeIcon icon={faCaretDown}/>
                     <div className="linea-horizontal"></div>
                 </div>
-                <div id='contenedor-resenas'>
-                    <Resena
-                        resenadorProp={'Franco Borsella'}
-                        fechaProp={'16/10/2023'}
-                        descripcionProp={'Este tipo es malísimo, se me quemó toda la casa'}
-                        calificacionProp={1}
-                    />
 
+                <div  id='contenedor-resenas'>
+                        {resenasRecuperadas.map((resena) => (
+                            <Resena
+                                resenadorProp={'Anónimo'}
+                                fechaProp={resena.fecha}
+                                descripcionProp={resena.descripcion}
+                                calificacionProp={resena.calificacion}
+                            />
+                        ))}
                 </div>
                 {/* MODAL lista de solicitudes */}
                 {modalListaSolicitudes && (<SolicitudesResenia closeModal={cerrarModalListaSolicitudes}/>)}
