@@ -44,9 +44,9 @@ function PerfilVisitado() {
     const [resenasRecuperadas, setResenasRecuperadas] = useState([]);
     useEffect(() => {
         axios
-            .get(`http://200.58.106.151:3000/api/resenas/${id}`, config)
+            .get(`http://200.58.106.151:3000/api/resenas?idCalificado=${id}`, config)
             .then((response) => {
-                setResenasRecuperadas(response.data.reseñasRecibidas);
+                setResenasRecuperadas(response.data);
             })
             .catch((error) => {
                 console.error('Error al obtener datos: ', error);
@@ -104,8 +104,9 @@ function PerfilVisitado() {
                 </div>
                 <div  id='contenedor-resenas'>
                         {resenasRecuperadas.map((resena) => (
+
                             <Resena
-                                resenadorProp={'Anónimo'}
+                                resenadorProp={resena.calificador.nombre + ' ' + resena.calificador.apellido}
                                 fechaProp={resena.fecha}
                                 descripcionProp={resena.descripcion}
                                 calificacionProp={resena.calificacion}
