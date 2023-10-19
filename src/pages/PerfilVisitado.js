@@ -7,7 +7,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faEnvelope, faLocationDot, faStar, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import axios from 'axios';
-import jwtDecode from "jwt-decode"; //npm install jwt-decode
 import { Link } from 'react-router-dom';
 import Resena from '../components/Resena';
 import ConfirmacionResena from '../components/ConfirmacionResena';
@@ -18,8 +17,6 @@ function PerfilVisitado() {
     const config = { headers: { Authorization: `Bearer ${token}` } };
     const [user, setUser] = useState({});
     const { id } = useParams();
-    let servicioAsociado = '';
-    let servicioDescripcion  = '';
 
     //Manejar el estado del modal
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -32,7 +29,7 @@ function PerfilVisitado() {
     let sinServicioAsociado = 'No brindo servicios';
     let sinServicioDescripcion = 'Soy una persona que siempre necesita a alguien para todo. A veces necesito a alguien para resolver problemas de limpieza, arreglar cables o cañerías';
 
-
+    //Petición para completar los datos del usuario logeado
     useEffect(() => {
         axios.get(`http://200.58.106.151:3000/api/usuario/${id}`, config)
             .then((response) => {
@@ -42,6 +39,20 @@ function PerfilVisitado() {
                 console.error(error);
             });      
     },[]);
+
+    //Recuperación de reseñas correpsondientes al perfil del usuario logeado
+    const [resenasRecuperadas, setResenasRecuperadas] = useState([]);
+    useEffect(() => {
+        axios
+            .get(`http://200.58.106.151:3000/api/resenas/${id}`, config)
+            .then((response) => {
+                setResenasRecuperadas(response.data.reseñasRecibidas);
+            })
+            .catch((error) => {
+                console.error('Error al obtener datos: ', error);
+            })
+    }, []);
+    console.log('resenas recuperadass: ', resenasRecuperadas);
 
     return (
         <>
@@ -91,13 +102,15 @@ function PerfilVisitado() {
                     <FontAwesomeIcon icon={faCaretDown}/>
                     <div className="linea-horizontal"></div>
                 </div>
-                <div id='contenedor-resenas'>
-                    <Resena
-                        resenadorProp={'Cintia Valero'}
-                        fechaProp={'15/10/2023'}
-                        descripcionProp={'Excelente servicio. Recomendadisimo'}
-                        calificacionProp={5}
-                    />
+                <div  id='contenedor-resenas'>
+                        {resenasRecuperadas.map((resena) => (
+                            <Resena
+                                resenadorProp={'Anónimo'}
+                                fechaProp={resena.fecha}
+                                descripcionProp={resena.descripcion}
+                                calificacionProp={resena.calificacion}
+                            />
+                        ))}
                 </div>
                 {isModalOpen && (
                 <ConfirmacionResena closeModal={closeModal}/>
