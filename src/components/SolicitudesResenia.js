@@ -19,7 +19,7 @@ function SolicitudesResenia({ closeModal, idCalificadorProp}) {
                 console.error('Error al obtener datos: ', error);
             });
     };
-    
+  
     useEffect(() => {
         cargarSolicitudResenas();
     }, []);
@@ -37,6 +37,19 @@ function SolicitudesResenia({ closeModal, idCalificadorProp}) {
         cargarSolicitudResenas();
     }
 
+    const eliminarsolicitud = (servicioId) => {
+        axios
+            .delete(`http://localhost:3000/api/resenas/${servicioId}`)
+            .then((response) => {
+                console.log(response.data);
+                cargarSolicitudResenas();
+            })
+            .catch((error) => {
+                console.error('Error al obtener datos: ', error);
+            });
+    }
+    
+    console.log("solicitudes: ", solicitudesRecuperadas)
     return(
         <div className="modalBackground">
         <div className="contenedor-modal" id="lista-solicitudes">
@@ -60,7 +73,7 @@ function SolicitudesResenia({ closeModal, idCalificadorProp}) {
                                         abrirModalAltaResenia(solicitud.id)
                                       }
                                 >Valorar</button>
-                                <button id="eliminar-solicitud">
+                                <button id="eliminar-solicitud" onClick={() => eliminarsolicitud(solicitud.id)}>
                                     <FontAwesomeIcon icon={faTrashCan} id="trash-icon" />
                                 </button>
                             </div>
@@ -70,7 +83,7 @@ function SolicitudesResenia({ closeModal, idCalificadorProp}) {
 
             </div>
         </div>
-            {modalAltaResenia && (<AltaResena recargarSolicitudes={cargarSolicitudResenas} closeModal={cerrarModalAltaResenia} idReseniaPendienteProp={selectedServicioId}/>)}
+            {modalAltaResenia && (<AltaResena cargarSolicitudResenas={cargarSolicitudResenas} closeModal={cerrarModalAltaResenia} idReseniaPendienteProp={selectedServicioId}/>)}
         </div>
     );
 }

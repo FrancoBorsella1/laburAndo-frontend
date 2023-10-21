@@ -6,7 +6,7 @@ import "../styles/modal.css";
 import jwtDecode from "jwt-decode"; 
 import axios from "axios";
 
-function AltaResena({ recargarSolicitudes, closeModal , idReseniaPendienteProp }) {
+function AltaResena({ cargarSolicitudResenas, closeModal , idReseniaPendienteProp }) {
 
     //Variables de estado para controlar el estado de la reseña
     const [resena, setResena] = useState([]);
@@ -67,7 +67,7 @@ function AltaResena({ recargarSolicitudes, closeModal , idReseniaPendienteProp }
             fecha: "",
         });
         setCalificacionSeleccionada("");
-        recargarSolicitudes();
+        cargarSolicitudResenas();
         closeModal(true);
     }
 
