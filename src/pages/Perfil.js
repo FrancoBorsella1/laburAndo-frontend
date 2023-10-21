@@ -57,6 +57,7 @@ function Perfil() {
     }, []);
     console.log('resenas recuperadass: ', resenasRecuperadas);
 
+    const promedio = (resenasRecuperadas.reduce((acumulador, objeto) => acumulador + objeto.calificacion, 0)/resenasRecuperadas.length).toFixed(2);
 
     return (
         <>
@@ -66,7 +67,7 @@ function Perfil() {
                     <div className='tarjeta-perfil-header'>
                         <p className='perfil-nombre'>{user.nombre && user.apellido ? user.nombre + ' ' + user.apellido: ' '}</p>
                         <div id='perfil-promedio-resena'>
-                            <span>2.5/5</span><FontAwesomeIcon icon={faStar} style={{color: "#ffd500",}} id="icono-resena"/>
+                            <span>{resenasRecuperadas.length > 0 ? promedio : "-"}/5</span><FontAwesomeIcon icon={faStar} style={{color: "#ffd500",}} id="icono-resena"/>
                         </div>
                     </div>
                     <div className='tarjeta-perfil-body'>
