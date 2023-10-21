@@ -16,7 +16,7 @@ function Detalles({ closeModal, idProp }) {
   const idLogeado = decoded.id;
 
   useEffect(() => {
-    axios.get(`http://200.58.106.151:3000/api/publicacion/${idProp}`, config)
+    axios.get(`http://localhost:3000/api/publicacion/${idProp}`, config)
       .then((response) => {
         setPublicacionDetalles(response.data.publicacion);
       })

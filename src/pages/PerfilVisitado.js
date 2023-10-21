@@ -31,7 +31,7 @@ function PerfilVisitado() {
 
     //Petición para completar los datos del usuario logeado
     useEffect(() => {
-        axios.get(`http://200.58.106.151:3000/api/usuario/${id}`, config)
+        axios.get(`http://localhost:3000/api/usuario/${id}`, config)
             .then((response) => {
                 setUser(response.data);
             })
@@ -44,7 +44,7 @@ function PerfilVisitado() {
     const [resenasRecuperadas, setResenasRecuperadas] = useState([]);
     useEffect(() => {
         axios
-            .get(`http://200.58.106.151:3000/api/resenas?idCalificado=${id}`, config)
+            .get(`http://localhost:3000/api/resenas?idCalificado=${id}`, config)
             .then((response) => {
                 setResenasRecuperadas(response.data);
             })

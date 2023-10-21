@@ -20,7 +20,7 @@ function ConfirmacionResena({ closeModal,idCalificadorProp}) {
     const solicitarReseña = async () => {
         try {
             const response = await axios.post(
-                "http://200.58.106.151:3000/api/resenas",
+                "http://localhost:3000/api/resenas",
                 solicitudReseña,
                 config
             );

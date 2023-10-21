@@ -26,7 +26,7 @@ function Home() {
     }, []);
 
     const obtenerPublicaciones = (filtros = {}) => {
-        let endpoint = 'http://200.58.106.151:3000/api/publicacion';
+        let endpoint = 'http://localhost:3000/api/publicacion';
 
         if (filtros.servicio && filtros.localidad) {
             endpoint += `/servicio-y-localidad/${filtros.servicio}/${filtros.localidad}`;

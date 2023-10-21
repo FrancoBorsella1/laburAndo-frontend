@@ -30,7 +30,7 @@ function AltaPublicacion({ closeModal }) {
 
   useEffect(() => {
     axios
-      .get(`http://200.58.106.151:3000/api/servicio`, config)
+      .get(`http://localhost:3000/api/servicio`, config)
       .then((response) => {
         setServicios(response.data.servicios);
       })
@@ -38,7 +38,7 @@ function AltaPublicacion({ closeModal }) {
         console.error(error);
       });
     axios
-      .get(`http://200.58.106.151:3000/api/provincia`, config)
+      .get(`http://localhost:3000/api/provincia`, config)
       .then((response) => {
         setProvincias(response.data.provincias);
       })
@@ -54,7 +54,7 @@ function AltaPublicacion({ closeModal }) {
 
     axios
       .get(
-        `http://200.58.106.151:3000/api/localidadesxprovincia/${nuevaProvinciaSeleccionada}`,
+        `http://localhost:3000/api/localidadesxprovincia/${nuevaProvinciaSeleccionada}`,
         config
       )
       .then((response) => {
@@ -89,7 +89,7 @@ function AltaPublicacion({ closeModal }) {
 
     try {
       const response = await axios.post(
-        "http://200.58.106.151:3000/api/publicacion",
+        "http://localhost:3000/api/publicacion",
         publicacionPersistir,
         config
       );

@@ -11,7 +11,7 @@ function SolicitudesResenia({ closeModal, idCalificadorProp}) {
     const [solicitudesRecuperadas, setSolicitudesRecuperadas] = useState([]);
     useEffect(() => {
         axios
-            .get(`http://200.58.106.151:3000/api/resenas?idCalificador=${idCalificadorProp}`)
+            .get(`http://localhost:3000/api/resenas?idCalificador=${idCalificadorProp}`)
             .then((response) => {
                 setSolicitudesRecuperadas(response.data);
             })

@@ -30,7 +30,7 @@ function Perfil() {
     
     //Petición para completar los datos del usuario logeado
     useEffect(() => {
-        axios.get(`http://200.58.106.151:3000/api/usuario/${decoded.id}`, config)
+        axios.get(`http://localhost:3000/api/usuario/${decoded.id}`, config)
             .then((response) => {
                 setUser(response.data);
             })
@@ -47,7 +47,7 @@ function Perfil() {
     const [resenasRecuperadas, setResenasRecuperadas] = useState([]);
     useEffect(() => {
         axios
-            .get(`http://200.58.106.151:3000/api/resenas?idCalificado=${decoded.id}`, config)
+            .get(`http://localhost:3000/api/resenas?idCalificado=${decoded.id}`, config)
             .then((response) => {
                 setResenasRecuperadas(response.data);
             })

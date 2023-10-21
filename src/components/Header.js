@@ -14,7 +14,7 @@ function Header({ onAbrirModal, onCambioFiltro }) {
 
   useEffect(() => {
     axios
-      .get(`http://200.58.106.151:3000/api/servicio`, config)
+      .get(`http://localhost:3000/api/servicio`, config)
       .then((response) => {
         setServicios(response.data.servicios);
       })
@@ -22,7 +22,7 @@ function Header({ onAbrirModal, onCambioFiltro }) {
         console.error(error);
       });
     axios
-      .get(`http://200.58.106.151:3000/api/provincia`, config)
+      .get(`http://localhost:3000/api/provincia`, config)
       .then((response) => {
         setProvincias(response.data.provincias);
       })
@@ -38,7 +38,7 @@ function Header({ onAbrirModal, onCambioFiltro }) {
 
     axios
       .get(
-        `http://200.58.106.151:3000/api/localidadesxprovincia/${nuevaProvinciaSeleccionada}`,
+        `http://localhost:3000/api/localidadesxprovincia/${nuevaProvinciaSeleccionada}`,
         config
       )
       .then((response) => {

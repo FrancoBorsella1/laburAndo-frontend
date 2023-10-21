@@ -56,7 +56,7 @@ function Login() {
         }
 
         try {
-          const response = await axios.post("http://200.58.106.151:3000/api/auth",usuario);
+          const response = await axios.post("http://localhost:3000/api/auth",usuario);
           console.log("Login exitoso: ", response.data.token);
     
           //Almacena los datos del usuario autenticado en el estado
