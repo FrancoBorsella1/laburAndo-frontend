@@ -105,14 +105,14 @@ function Perfil() {
                 </div>
 
                 <div  id='contenedor-resenas'>
-                        {resenasRecuperadas.map((resena) => (
+                        {resenasRecuperadas.length > 0 ? resenasRecuperadas.map((resena) => (
                             <Resena
                                 resenadorProp={resena.calificador.nombre + ' ' + resena.calificador.apellido}
                                 fechaProp={resena.fecha}
                                 descripcionProp={resena.descripcion}
                                 calificacionProp={resena.calificacion}
                             />
-                        ))}
+                        )): <p>No hay reseñas para mostrar</p>}     
                 </div>
                 {/* MODAL lista de solicitudes */}
                 {modalListaSolicitudes && (<SolicitudesResenia closeModal={cerrarModalListaSolicitudes} idCalificadorProp={decoded.id}/>)}

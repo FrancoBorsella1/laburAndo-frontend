@@ -103,7 +103,7 @@ function PerfilVisitado() {
                     <div className="linea-horizontal"></div>
                 </div>
                 <div  id='contenedor-resenas'>
-                        {resenasRecuperadas.map((resena) => (
+                        {resenasRecuperadas.length > 0 ? resenasRecuperadas.map((resena) => (
 
                             <Resena
                                 resenadorProp={resena.calificador.nombre + ' ' + resena.calificador.apellido}
@@ -111,7 +111,7 @@ function PerfilVisitado() {
                                 descripcionProp={resena.descripcion}
                                 calificacionProp={resena.calificacion}
                             />
-                        ))}
+                        )): <p>No hay reseñas para mostrar</p>}
                 </div>
                 {isModalOpen && (
                 <ConfirmacionResena closeModal={closeModal} idCalificadorProp={id}/>

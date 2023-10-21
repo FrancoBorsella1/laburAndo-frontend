@@ -85,7 +85,7 @@ function Home() {
                     <div className="linea-horizontal"></div>
                 </div>
                 <div className="home-publicaciones">
-                        {publicacionesRecuperadas.map((publicacion) => (
+                        {publicacionesRecuperadas.length > 0 ? publicacionesRecuperadas.map((publicacion) => (
                             <Publicacion
                                 idProp={publicacion.id}
                                 tituloProp={publicacion.titulo}
@@ -94,7 +94,7 @@ function Home() {
                                 localidadProp={publicacion.localidad.nombre}
                                 onAmpliar={ampliarPublicacion}
                             />
-                        ))}
+                        )): <p>No hay publicaciones disponibles</p>}
 
                         {publicacionAmpliada && (
                             <Detalles idProp={publicacionAmpliada} closeModal={closeDetalles}/>
