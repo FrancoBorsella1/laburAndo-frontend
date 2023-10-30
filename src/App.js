@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Perfil from "./pages/Perfil";
 import PerfilVisitado from "./pages/PerfilVisitado";
+import MisPublicaciones from "./pages/MisPublicaciones";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route path="/home" element={<Home/>} />
       <Route path="/perfil" element={<Perfil/>} />
       <Route path="/perfilvisitado/:id" element={<PerfilVisitado/>}/>
+      <Route path="/mispublicaciones" element={<MisPublicaciones/>}/>
     </Routes>
   );
 }

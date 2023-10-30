@@ -4,8 +4,8 @@
 
 /* Contenddores */
 #contenedor-publicacion{
-    height: 170px; /*header:50px + content:120px*/
-    width: 550px;
+    height: 200px; /*header:50px + content:120px*/
+    width: 700px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -22,7 +22,7 @@
 
 #contenedor-publicacion .publicacion-content{
     background-color: var(--claro);
-    height: 120px;
+    height: 150px;
     border-radius: 0 0 50px 50px;
     padding: 0 30px;
     display: flex;
@@ -37,12 +37,13 @@
 }
 #contenedor-publicacion .publicacion-header p {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 20px;
 }
 #contenedor-publicacion .publicacion-content p {
     text-align: left;
     width: 100%;
     margin-top: 9px;
+    font-size: 20px;
 }
 #contenedor-publicacion #publicacion-icono{
     height: 1.4rem;

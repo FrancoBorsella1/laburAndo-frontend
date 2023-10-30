@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/Header.css";
 import axios from "axios";
 
-function Header({ onAbrirModal, onCambioFiltro }) {
+function HeaderHome({ onCambioFiltro }) {
   const [servicios, setServicios] = useState([]);
   const [provincias, setProvincias] = useState([]);
   const [localidades, setLocalidades] = useState([]);
@@ -74,15 +74,8 @@ function Header({ onAbrirModal, onCambioFiltro }) {
 
   return (
     <header id="componente-header">
-      <div className="contenedor-publicacion">
-        <p>¿Estás buscando un servicio?</p>
-        <button className="publicacion" onClick={onAbrirModal}>
-          Creá una publicación...
-        </button>
-      </div>
-      <div className="linea-vertical"></div>
       <div className="contenedor-busqueda">
-        <p>¿Estás buscando un trabajo?</p>
+        <p>Encontrá tu próximo laburo</p>
         <form className="formulario-busqueda" onSubmit={handleEnviarFiltros}>
           <select 
             name="Servicio"
@@ -133,4 +126,4 @@ function Header({ onAbrirModal, onCambioFiltro }) {
   );
 }
 
-export default Header;
+export default HeaderHome;

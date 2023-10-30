@@ -4,8 +4,8 @@
 
 /* Contenddores */
 #contenedor-resena{
-    min-height: 170px; /*header:50px + content:120px*/
-    width: 550px;
+    min-height: 200px; /*header:50px + content:120px*/
+    width: 700px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
     margin-bottom: 25px;
 }
@@ -22,7 +22,7 @@
 
 #contenedor-resena .resena-content{
     background-color: var(--claro);
-    min-height: 120px;
+    min-height: 150px;
     border-radius: 0 0 50px 50px;
     padding: 0 30px;
     display: flex;
@@ -39,7 +39,7 @@
 
 #contenedor-resena .resena-header p {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 #contenedor-resena .resena-content p {
@@ -48,6 +48,7 @@
     margin-top: 9px;
     white-space: wrap;
     overflow: auto;
+    font-size: 20px;
 }
 
 #contenedor-resena .resena-calificacion {
