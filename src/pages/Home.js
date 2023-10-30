@@ -3,7 +3,7 @@ import "../styles/Home.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown} from "@fortawesome/free-solid-svg-icons";
 import Navbar from '../components/Navbar';
-import Header from '../components/Header';
+import HeaderHome from '../components/HeaderHome';
 import Publicacion from '../components/Publicacion';
 import Detalles from "../components/Detalles";
 import AltaPublicacion from "../components/AltaPublicacion";
@@ -72,8 +72,7 @@ function Home() {
     return(
         <>
             <Navbar/>
-            <Header 
-                onAbrirModal={openModal}
+            <HeaderHome 
                 onCambioFiltro={obtenerPublicaciones}
             />
 
