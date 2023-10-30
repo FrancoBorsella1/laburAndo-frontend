@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Header.css";
 import axios from "axios";
 
@@ -69,6 +71,10 @@ function HeaderHome({ onCambioFiltro }) {
     onCambioFiltro(filtros);
   }
 
+  //Recargar página para limpiar los filtros
+  function recargarPagina() {
+    window.location.reload();
+  }
 
   // --------------------------------------------------------------------------------------------
 
@@ -120,6 +126,11 @@ function HeaderHome({ onCambioFiltro }) {
             ))}
           </select>
           <button type="submit">Buscar</button>
+          <button id="boton-recargar" type="button" onClick={recargarPagina}>
+            <FontAwesomeIcon
+              icon={faRotateRight}
+            />
+          </button>
         </form>
       </div>
     </header>
