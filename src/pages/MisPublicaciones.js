@@ -10,6 +10,7 @@ import AltaPublicacion from "../components/AltaPublicacion";
 import Footer from '../components/Footer';
 import axios from 'axios';
 import jwtDecode from "jwt-decode";
+import EdicionPublicacion from "../components/EdicionPublicacion";
 
 function MisPublicaciones() {
 
@@ -79,14 +80,17 @@ function MisPublicaciones() {
                 </div>
                 <div className="home-publicaciones">
                         {publicacionesRecuperadas.length > 0 ? publicacionesRecuperadas.map((publicacion) => (
-                            <Publicacion
-                                idProp={publicacion.id}
-                                tituloProp={publicacion.titulo}
-                                fechaProp={publicacion.fechaPublicacion}
-                                servicioProp={publicacion.servicio.nombre}
-                                localidadProp={publicacion.localidad.nombre}
-                                onAmpliar={ampliarPublicacion}
-                            />
+                            <div className="home-publicacion">
+                                <Publicacion
+                                    idProp={publicacion.id}
+                                    tituloProp={publicacion.titulo}
+                                    fechaProp={publicacion.fechaPublicacion}
+                                    servicioProp={publicacion.servicio.nombre}
+                                    localidadProp={publicacion.localidad.nombre}
+                                    onAmpliar={ampliarPublicacion}
+                                    />
+                                <EdicionPublicacion/>
+                            </div>
                         )): <p>Todavía no hay publicaciones</p>}
 
                         {publicacionAmpliada && (

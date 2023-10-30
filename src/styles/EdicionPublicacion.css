@@ -1,0 +1,17 @@
+@import 'generales.css';
+#edicion-publicacion {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#edicion-publicacion .icono-opcion-publicacion{
+    border-radius: 50px;
+    background: var(--alert);
+    color: white;
+    height: 30px;
+    padding: 13px;
+}
