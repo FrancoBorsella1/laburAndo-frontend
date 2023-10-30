@@ -7,6 +7,7 @@
     --extra: #C9CCC1; /*Para generar contraste o arreglar: Footer*/
     --claro: #FFFFFF; /**/
     --oscuro: #000000;
+    --alert: #CF3B3B;
 }
 
 *{
