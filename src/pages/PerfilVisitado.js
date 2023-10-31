@@ -54,7 +54,7 @@ function PerfilVisitado() {
     }, []);
     console.log('resenas recuperadass: ', resenasRecuperadas);
 
-    const promedio = (resenasRecuperadas.reduce((acumulador, objeto) => acumulador + objeto.calificacion, 0)/resenasRecuperadas.length).toFixed(2);
+    const promedio = (resenasRecuperadas.reduce((acumulador, objeto) => acumulador + objeto.calificacion, 0)/resenasRecuperadas.length).toFixed(1);
 
     return (
         <>
