@@ -18,7 +18,6 @@ function Perfil() {
     const config = { headers: { Authorization: `Bearer ${token}` } };
     const [user, setUser] = useState({});
 
-
     // Manejo del modal: lista de solicitudes de reseña
     const [modalListaSolicitudes, setModalListaSolicitudes] = useState(false);
     const abrirModalListaSolicitudes = () => {
@@ -26,6 +25,7 @@ function Perfil() {
     }
     const cerrarModalListaSolicitudes = () => {
         setModalListaSolicitudes(false);
+        verificarSolicitudes();
     }
     
     //Petición para completar los datos del usuario logeado
@@ -57,7 +57,38 @@ function Perfil() {
     }, []);
     console.log('resenas recuperadass: ', resenasRecuperadas);
 
-    const promedio = (resenasRecuperadas.reduce((acumulador, objeto) => acumulador + objeto.calificacion, 0)/resenasRecuperadas.length).toFixed(2);
+    const promedio = (resenasRecuperadas.reduce((acumulador, objeto) => acumulador + objeto.calificacion, 0)/resenasRecuperadas.length).toFixed(1);
+
+    //Notificacionesde solicitudes de reseña
+    const [claseNotificacion, setClaseNotificacion] = useState('notificacion-resena-inactiva');
+
+    const [solicitudesNotificacion, setSolicitudesNotificacion] = useState([]);
+    const cargarSolicitudResenas = () => {
+        axios
+            .get(`http://localhost:3000/api/resenas?idCalificador=${decoded.id}`)
+            .then((response) => {
+                setSolicitudesNotificacion(response.data);
+            })
+            .catch((error) => {
+                console.error('Error al obtener datos: ', error);
+            });
+    };
+
+    const verificarSolicitudes = () => {
+        if (solicitudesNotificacion.length > 0) {
+            setClaseNotificacion('notificacion-resena-activa');
+        } else {
+            setClaseNotificacion('notificacion-resena-inactiva');
+        }
+    };
+  
+    useEffect(() => {
+        cargarSolicitudResenas();
+    }, []);
+
+    useEffect(() => {
+        verificarSolicitudes();
+    }, [solicitudesNotificacion]);
 
     return (
         <>
@@ -93,7 +124,7 @@ function Perfil() {
                                 <div className='item-informacion'>
                                     <FontAwesomeIcon icon={faLocationDot} id="icono-ubicacion"/><span> {user.localidad && user.apellido ? user.localidad.nombre + ', ' + user.localidad.provincia.nombre: ' '} </span>
                                 </div>
-                                <button onClick={abrirModalListaSolicitudes}>VER SOLICITUDES DE RESEÑA</button>
+                                <button onClick={abrirModalListaSolicitudes}><div className={claseNotificacion}></div>VER SOLICITUDES DE RESEÑA</button>
                             </div>
                         </div>
                     </div>

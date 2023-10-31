@@ -126,6 +126,7 @@
 
 #tarjeta-perfil button {
     margin-top: 50px;
+    position: relative;
 }
 
 .linea-resultados{
@@ -145,6 +146,24 @@
 
 .linea-resultados p{
     margin-right: 5px;
+}
+
+.notificacion-resena-inactiva {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    position: absolute;
+    right: 3px;
+    top: 3px;
+}
+
+
+.notificacion-resena-activa {
+    width: 12px; height: 12px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    right: 3px;
+    top: 3px;
 }
 
 
