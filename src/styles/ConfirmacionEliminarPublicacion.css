@@ -1,0 +1,55 @@
+@import 'generales.css';
+
+
+/* Contenedores */
+#confirmacion-eliminar-publicacion{
+    height: 230px;
+    width: 500px;
+}
+
+    #confirmacion-eliminar-publicacion
+    #confirmar-eliminar-publicacion-body {
+        display: flex;
+        flex-direction: row;
+        margin: 0 35px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    #confirmacion-eliminar-publicacion
+    .modal-footer {
+        height: 30px; width: 100%;
+        display: flex;
+        justify-content: right;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+/* Elementos independientes */
+#confirmacion-eliminar-publicacion
+.modal-footer
+button{
+    width: 120px;
+    height: 30px;
+    font-size: 14px;
+    margin-right: 35px;
+}
+
+#confirmacion-eliminar-publicacion
+.modal-footer 
+.boton-cancelar{
+    background-color: var(--inactive);
+    margin-right: 5px;
+}
+
+#confirmacion-eliminar-publicacion
+#exclamation-icon {
+    width: 60px;
+    height: 100px;
+    color: var(--alertShadow);
+}
+
+#confirmacion-eliminar-publicacion
+.boton-confirmar {
+    margin-right: 30px;
+}

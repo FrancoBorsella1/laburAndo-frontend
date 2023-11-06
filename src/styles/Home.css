@@ -20,6 +20,10 @@
         grid-gap: 30px;
         justify-items: center;
     }
+    #contenedor-home .home-publicaciones .home-publicacion{
+        display: flex;
+        flex-direction: row;
+    }
 
 /* --------- Generales: más de 1 elemento --------- */
 
