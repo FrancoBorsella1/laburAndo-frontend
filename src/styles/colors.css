@@ -8,6 +8,8 @@
     --claro: #FFFFFF; /**/
     --oscuro: #000000;
     --alert: #CF3B3B;
+    --alertShadow:rgb(172, 41, 41);
+    --primaryShadow: #1b54b1; /*Azul 10%*/
 }
 
 *{

@@ -89,7 +89,9 @@ function MisPublicaciones() {
                                     localidadProp={publicacion.localidad.nombre}
                                     onAmpliar={ampliarPublicacion}
                                     />
-                                <EdicionPublicacion/>
+                                <EdicionPublicacion
+                                    idProp={publicacion.id}
+                                />
                             </div>
                         )): <p>Todavía no hay publicaciones</p>}
 
