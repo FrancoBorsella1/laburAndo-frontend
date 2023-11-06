@@ -8,10 +8,36 @@
     gap: 20px;
 }
 
-#edicion-publicacion .icono-opcion-publicacion{
+#edicion-publicacion 
+.icono-opcion-publicacion{
     border-radius: 50px;
-    background: var(--alert);
     color: white;
-    height: 30px;
+    height: 22px;
+    width: 22px;
     padding: 13px;
+    cursor: pointer;
+}
+
+/* icono manito en publicaciones */
+#edicion-publicacion 
+#opcion-publicacion-hand{
+    background: var(--primary);
+    cursor: pointer;
+}
+#edicion-publicacion 
+#opcion-publicacion-hand:active{
+    background: var(--primaryShadow);    
+    cursor: pointer;
+}
+
+/* icono eliminar publicacion */
+#edicion-publicacion 
+#opcion-publicacion-trash{
+    background: var(--alert);
+    cursor: pointer;
+}
+#edicion-publicacion 
+#opcion-publicacion-trash:active{
+    background: var(--alertShadow);    
+    cursor: pointer;
 }
