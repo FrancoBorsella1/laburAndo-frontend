@@ -71,3 +71,7 @@
 #lista-solicitudes #mensaje {
     text-align: center;
 }
+
+#lista-solicitudes a {
+    margin-right: 18px;
+}
