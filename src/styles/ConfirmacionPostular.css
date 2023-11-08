@@ -1,0 +1,49 @@
+@import 'generales.css';
+
+/* Generales */
+
+/* Contenedores */
+#confirmacion-postular{
+    height: 230px;
+    width: 500px;
+    z-index: 1004 ; 
+}
+
+#confirmacion-postular .modal-body {
+    display: flex;
+    flex-direction: column;
+    margin: 0 35px;
+    justify-content: center;
+    text-align: center;
+}
+
+#confirmacion-postular .modal-footer{
+    height: 30px; width: 100%;
+    display: flex;
+    justify-content: right;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Elementos independientes */
+#confirmacion-postular small {
+    color: var(--primary);
+    margin-top: 10px;
+}
+#confirmacion-postular .modal-body p {
+    font-size: 18px;
+}
+
+#confirmacion-postular .modal-footer button{
+    width: 120px;
+    height: 30px;
+    font-size: 14px;
+    margin-right: 5px;
+}
+#confirmacion-postular .boton-cancelar{
+    background-color: var(--inactive);
+}
+
+#confirmacion-postular .modal-footer .boton-confirmar {
+    margin-right: 30px;
+}

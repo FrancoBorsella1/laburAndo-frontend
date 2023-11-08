@@ -1,7 +1,10 @@
 @import 'generales.css';
 @import 'modal.css';
 
-  
+#detalles-publicacion{
+  z-index: 1003;
+
+}
     /*---------- MODAL BODY ------------*/
 
       /* detalles */
@@ -60,8 +63,17 @@
         justify-content: center;
       }
       #detalles-publicacion .modal-footer{
-        justify-content: right;
+        justify-content: space-between;
+        padding: 10px 25px;
       } 
+      #detalles-publicacion .modal-footer .contenedor-postularme{
+        width: 30%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center ;
+        align-items: center;
+
+      }
 
   /* independientes */
   #detalles-publicacion span, #detalles-publicacion #fecha-publicacion {
@@ -78,3 +90,38 @@
     color: var(--primary);
   }
 
+  #detalles-publicacion .icono-postularme{
+    height: 30px;
+    width: 30px;
+    color: var(--claro);
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    background: var(--primary);
+  }
+  #detalles-publicacion .icono-postularme:active{
+    background: var(--primaryShadow);
+  }
+
+  #detalles-publicacion .contenedor-postularme p{
+    font-weight: 600;
+    margin-right: 5px;
+    color: var(--primary);
+    /* color: red; */
+  }
+ 
+  #detalles-publicacion #publicacion-Electricidad{
+      background: var(--electricidad);
+  }
+
+  #detalles-publicacion #publicacion-Limpieza{
+      background: var(--limpieza);
+  }
+
+  #detalles-publicacion #publicacion-Gas{ 
+      background: var(--gas);
+  }
+
+  #detalles-publicacion #publicacion-Plomeria{
+      background: var(--plomeria);
+  }

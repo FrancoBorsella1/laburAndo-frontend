@@ -67,4 +67,5 @@
             border: none;
             font-size: 25px;
             cursor: pointer;
+            color: var(--claro);
           }

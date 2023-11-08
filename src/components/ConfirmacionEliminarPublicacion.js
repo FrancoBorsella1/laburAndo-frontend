@@ -5,8 +5,7 @@ import "../styles/ConfirmacionEliminarPublicacion.css";
 import "../styles/modal.css";
 import axios from "axios";
 
-
-function ConfirmacionEliminarPublicacion({ closeModal, idPublicacion}) {
+function ConfirmacionEliminarPublicacion({ closeModal, idPublicacion }) {
 
     //Petición para eliminar una publicación
     const token = localStorage.getItem("token");
@@ -19,8 +18,7 @@ function ConfirmacionEliminarPublicacion({ closeModal, idPublicacion}) {
             .then((response) => {
                 console.log(response.data);
                 closeModal(false);
-            })
-            .catch((error) => {
+            }).catch((error) => {
                 console.error('Error al eliminar publicación: ', error);
             });
     }
