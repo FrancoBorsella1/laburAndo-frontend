@@ -1,0 +1,35 @@
+@import 'generales.css';
+
+/* Contenedores */
+
+#buscar-usuario {
+    height: 220px;
+    width: 550px;
+}
+
+#buscar-usuario .modal-body{
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+}
+
+#buscar-usuario .modal-opciones {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 15px;
+    width: 100%;
+}
+
+/* Elementos independientes */
+
+#buscar-usuario h4 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#buscar-usuario input {
+    text-align: center;
+    border: 1px solid var(--inactive);
+    width: 100%;
+}
