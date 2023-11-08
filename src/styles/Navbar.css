@@ -26,6 +26,7 @@ nav a {
     margin-top: 12px;
     justify-content: space-around;
     flex-direction: column;
+    cursor: pointer;
 }
 
 /* Elementos independientes */
