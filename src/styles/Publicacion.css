@@ -20,16 +20,38 @@
 }
 
 
-#contenedor-publicacion .publicacion-content{
+#contenedor-publicacion .publicacion-tarjeta {
+    border-radius: 0 0 50px 50px;
     background-color: var(--claro);
     height: 150px;
-    border-radius: 0 0 50px 50px;
-    padding: 0 30px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    width: 100%;
     justify-content: center;
-    align-items: end;
 }
+
+    #contenedor-publicacion .publicacion-content{
+        /* padding-right: 30px; */
+        display: flex;
+        width: 70%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: end;
+    }
+    #contenedor-publicacion .publicacion-contenedor-icono{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 20%;
+    }
+    #contenedor-publicacion .contenedor-icono-abrirdetalles{
+        display: flex;
+        justify-content: center;
+        align-items: end;
+        width: 10%;
+        /* padding: 0 10px 30px 0; */
+        padding-bottom: 30px;
+    }
 
 /* Elementos independientes */
 #contenedor-publicacion span {
@@ -49,4 +71,32 @@
     height: 1.4rem;
     cursor: pointer;
     margin-top: 9px;
+    display: flex;
+    align-items: end;
 }
+#contenedor-publicacion .publicacion-icono-servicio {
+    height: 35px;
+    width: 35px;
+    color: var(--claro);
+    padding: 15px;
+    border-radius: 50%;
+}
+    #contenedor-publicacion #publicacion-Electricidad, 
+    #contenedor-publicacion #icono-Electricidad{
+        background: var(--electricidad);
+    }
+
+    #contenedor-publicacion #publicacion-Limpieza, 
+    #contenedor-publicacion #icono-Limpieza{
+        background: var(--limpieza);
+    }
+
+    #contenedor-publicacion #publicacion-Gas,
+    #contenedor-publicacion #icono-Gas{
+        background: var(--gas);
+    }
+
+    #contenedor-publicacion #publicacion-Plomeria,
+    #contenedor-publicacion #icono-Plomeria{
+        background: var(--plomeria);
+    }
