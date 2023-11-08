@@ -5,6 +5,7 @@ import { faHand, faTrash } from "@fortawesome/free-solid-svg-icons";
 import '../styles/EdicionPublicacion.css';
 // import axios from 'axios';
 import ConfirmacionEliminarPublicacion from './ConfirmacionEliminarPublicacion';
+import ListaPostulados from './ListaPostulados';
 
 
 function EdicionPublicacion({idProp}) {
@@ -19,6 +20,14 @@ function EdicionPublicacion({idProp}) {
         window.location.reload();
     }
 
+    //Manejo del modal: Abrir lista de postulados
+    const [modalListaSolicitudes, setModalListaSolicitudes] = useState(false);
+    const abrirModalListaSolicitudes = () => {
+        setModalListaSolicitudes(true);
+    }
+    const cerrarModalListaSolicitudes = () => {
+        setModalListaSolicitudes(false);
+    }
 
     return (
         <div id='edicion-publicacion'>
@@ -27,8 +36,10 @@ function EdicionPublicacion({idProp}) {
                     className='icono-opcion-publicacion'
                     id="opcion-publicacion-hand"
                     icon={faHand}
+                    onClick={abrirModalListaSolicitudes}
                 />
             </div>
+            {modalListaSolicitudes && (<ListaPostulados closeModal={cerrarModalListaSolicitudes} idPublicacion={idProp}/>)}
             <div className='opcion-publicacion'>
                 <FontAwesomeIcon
                     className='icono-opcion-publicacion'
