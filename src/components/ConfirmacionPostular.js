@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark, faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import "../styles/ConfirmacionPostular.css";
 import "../styles/modal.css";
 import axios from "axios";
@@ -10,26 +10,32 @@ import jwtDecode from "jwt-decode";
 function ConfirmacionPostular({ closeModal, idPublicacion}) {
     
     const token = localStorage.getItem("token");
-    const config = { headers: { Authorization: `Bearer ${token}` } };
-    
     const decoded = jwtDecode(token);
+    const config = { headers: { Authorization: `Bearer ${token}` } };
+
     const idPostulante = decoded.id;
     
-    console.log(config)
-    //Petición para asociar a un postulante a una publicación
-    const postularmePublicacion = () => {
+
+   
+    const postularmePublicacion = async () => {
         console.log("entró a la publicaciom", idPublicacion)
-        console.log("entró con el postulante", idPostulante)
-        axios
-            .post(`http://localhost:3000/api/SolicitudTrabajo/${idPostulante}/${idPublicacion}`, config)
-            .then((response) => {
-                console.log(response.data);
-                closeModal(false);
-            })
-            .catch((error) => {
-                console.error('Error postualrse en la publicación: ', error);
-            });
-    }
+        console.log("postulante", idPostulante)
+        try {
+            const response = await axios.post(
+                `http://localhost:3000/api/SolicitudTrabajo/${idPostulante}/${idPublicacion}`,
+                null,
+                config
+            );
+            console.error(response);
+            alert("Te postulaste con éxito")
+            closeModal(false);
+        } catch (error) {
+            console.error(error);
+            if (error.response.status == 500) {
+                alert("Ya te habías postulado a este laburo :) ")
+            }
+        }
+    };
 
     return(
         <div className="modalBackground">
