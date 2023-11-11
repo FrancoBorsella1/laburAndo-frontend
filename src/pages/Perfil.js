@@ -139,7 +139,7 @@ function Perfil() {
                 <div  id='contenedor-resenas'>
                         {resenasRecuperadas.length > 0 ? resenasRecuperadas.map((resena) => (
                             <Resena
-                                resenadorProp={resena.calificador.nombre + ' ' + resena.calificador.apellido}
+                                resenadorProp={resena.calificador.nombre}
                                 fechaProp={resena.fecha}
                                 descripcionProp={resena.descripcion}
                                 calificacionProp={resena.calificacion}
