@@ -3,14 +3,16 @@ import "../styles/Home.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown} from "@fortawesome/free-solid-svg-icons";
 import Navbar from '../components/Navbar';
-import HeaderHome from '../components/HeaderHome';
+import HeaderPublicaciones from '../components/HeaderPublicaciones';
 import Publicacion from '../components/Publicacion';
 import Detalles from "../components/Detalles";
 import AltaPublicacion from "../components/AltaPublicacion";
 import Footer from '../components/Footer';
 import axios from 'axios';
+import jwtDecode from "jwt-decode";
+import EdicionPublicacion from "../components/EdicionPublicacion";
 
-function Home() {
+function MisPublicaciones() {
 
     //Obtengo el token del usuario para poder hacer las peticiones
     const token = localStorage.getItem("token");
@@ -18,6 +20,7 @@ function Home() {
       headers: { Authorization: `Bearer ${token}` } 
     };
     console.log(config.headers.Authorization)
+    const decoded = jwtDecode(token);
 
     const [publicacionesRecuperadas, setPublicacionesRecuperadas] = useState([]);
 
@@ -25,16 +28,8 @@ function Home() {
         obtenerPublicaciones();
     }, []);
 
-    const obtenerPublicaciones = (filtros = {}) => {
-        let endpoint = 'http://localhost:3000/api/publicacion';
-
-        if (filtros.servicio && filtros.localidad) {
-            endpoint += `/servicio-y-localidad/${filtros.servicio}/${filtros.localidad}`;
-          } else if (filtros.servicio) {
-            endpoint += `/servicio/${filtros.servicio}`;
-          } else if (filtros.localidad) {
-            endpoint += `/localidad/${filtros.localidad}`;
-        }
+    const obtenerPublicaciones = () => {
+        let endpoint = `http://localhost:3000/api/publicacion/usuario/${decoded.id}`;
 
         axios
             .get(endpoint, config)
@@ -72,28 +67,33 @@ function Home() {
     return(
         <>
             <Navbar/>
-            <HeaderHome 
-                onCambioFiltro={obtenerPublicaciones}
+            <HeaderPublicaciones 
+                onAbrirModal={openModal}
             />
 
             <main id="contenedor-home">
                 <div className="home-linea-resultados">
                     <div className="linea-horizontal"></div>
-                    <p>Resultados</p>
+                    <p>Mis publicaciones</p>
                     <FontAwesomeIcon icon={faCaretDown}/>
                     <div className="linea-horizontal"></div>
                 </div>
                 <div className="home-publicaciones">
                         {publicacionesRecuperadas.length > 0 ? publicacionesRecuperadas.map((publicacion) => (
-                            <Publicacion
-                                idProp={publicacion.id}
-                                tituloProp={publicacion.titulo}
-                                fechaProp={publicacion.fechaPublicacion}
-                                servicioProp={publicacion.servicio.nombre}
-                                localidadProp={publicacion.localidad.nombre}
-                                onAmpliar={ampliarPublicacion}
-                            />
-                        )): <p>No hay publicaciones disponibles</p>}
+                            <div className="home-publicacion">
+                                <Publicacion
+                                    idProp={publicacion.id}
+                                    tituloProp={publicacion.titulo}
+                                    fechaProp={publicacion.fechaPublicacion}
+                                    servicioProp={publicacion.servicio.nombre}
+                                    localidadProp={publicacion.localidad.nombre}
+                                    onAmpliar={ampliarPublicacion}
+                                    />
+                                <EdicionPublicacion
+                                    idProp={publicacion.id}
+                                />
+                            </div>
+                        )): <p>Todavía no hay publicaciones</p>}
 
                         {publicacionAmpliada && (
                             <Detalles idProp={publicacionAmpliada} closeModal={closeDetalles}/>
@@ -108,4 +108,4 @@ function Home() {
     );
 };
 
-export default Home;
+export default MisPublicaciones;

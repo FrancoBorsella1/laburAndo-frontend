@@ -31,7 +31,7 @@ function PerfilVisitado() {
 
     //Petición para completar los datos del usuario logeado
     useEffect(() => {
-        axios.get(`http://200.58.106.151:3000/api/usuario/${id}`, config)
+        axios.get(`http://localhost:3000/api/usuario/${id}`, config)
             .then((response) => {
                 setUser(response.data);
             })
@@ -44,7 +44,7 @@ function PerfilVisitado() {
     const [resenasRecuperadas, setResenasRecuperadas] = useState([]);
     useEffect(() => {
         axios
-            .get(`http://200.58.106.151:3000/api/resenas?idCalificado=${id}`, config)
+            .get(`http://localhost:3000/api/resenas?idCalificado=${id}`, config)
             .then((response) => {
                 setResenasRecuperadas(response.data);
             })
@@ -54,6 +54,8 @@ function PerfilVisitado() {
     }, []);
     console.log('resenas recuperadass: ', resenasRecuperadas);
 
+    const promedio = (resenasRecuperadas.reduce((acumulador, objeto) => acumulador + objeto.calificacion, 0)/resenasRecuperadas.length).toFixed(1);
+
     return (
         <>
             <Navbar/>
@@ -62,7 +64,7 @@ function PerfilVisitado() {
                     <div className='tarjeta-perfil-header'>
                         <p className='perfil-nombre'>{user.nombre && user.apellido ? user.nombre + ' ' + user.apellido: ''}</p>
                         <div id='perfil-promedio-resena'>
-                            <span>2.5/5</span><FontAwesomeIcon icon={faStar} style={{color: "#ffd500",}} id="icono-resena"/>
+                            <span>{resenasRecuperadas.length > 0 ? promedio : '-'}/5</span><FontAwesomeIcon icon={faStar} style={{color: "#ffd500",}} id="icono-resena"/>
                         </div>
                     </div>
                     <div className='tarjeta-perfil-body'>
@@ -103,15 +105,15 @@ function PerfilVisitado() {
                     <div className="linea-horizontal"></div>
                 </div>
                 <div  id='contenedor-resenas'>
-                        {resenasRecuperadas.map((resena) => (
+                        {resenasRecuperadas.length > 0 ? resenasRecuperadas.map((resena) => (
 
                             <Resena
-                                resenadorProp={resena.calificador.nombre + ' ' + resena.calificador.apellido}
+                                resenadorProp={resena.calificador.nombre}
                                 fechaProp={resena.fecha}
                                 descripcionProp={resena.descripcion}
                                 calificacionProp={resena.calificacion}
                             />
-                        ))}
+                        )): <p>No hay reseñas para mostrar</p>}
                 </div>
                 {isModalOpen && (
                 <ConfirmacionResena closeModal={closeModal} idCalificadorProp={id}/>

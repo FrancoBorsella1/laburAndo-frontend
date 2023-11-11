@@ -18,7 +18,6 @@ function Perfil() {
     const config = { headers: { Authorization: `Bearer ${token}` } };
     const [user, setUser] = useState({});
 
-
     // Manejo del modal: lista de solicitudes de reseña
     const [modalListaSolicitudes, setModalListaSolicitudes] = useState(false);
     const abrirModalListaSolicitudes = () => {
@@ -26,11 +25,12 @@ function Perfil() {
     }
     const cerrarModalListaSolicitudes = () => {
         setModalListaSolicitudes(false);
+        verificarSolicitudes();
     }
     
     //Petición para completar los datos del usuario logeado
     useEffect(() => {
-        axios.get(`http://200.58.106.151:3000/api/usuario/${decoded.id}`, config)
+        axios.get(`http://localhost:3000/api/usuario/${decoded.id}`, config)
             .then((response) => {
                 setUser(response.data);
             })
@@ -47,7 +47,7 @@ function Perfil() {
     const [resenasRecuperadas, setResenasRecuperadas] = useState([]);
     useEffect(() => {
         axios
-            .get(`http://200.58.106.151:3000/api/resenas?idCalificado=${decoded.id}`, config)
+            .get(`http://localhost:3000/api/resenas?idCalificado=${decoded.id}`, config)
             .then((response) => {
                 setResenasRecuperadas(response.data);
             })
@@ -57,6 +57,38 @@ function Perfil() {
     }, []);
     console.log('resenas recuperadass: ', resenasRecuperadas);
 
+    const promedio = (resenasRecuperadas.reduce((acumulador, objeto) => acumulador + objeto.calificacion, 0)/resenasRecuperadas.length).toFixed(1);
+
+    //Notificacionesde solicitudes de reseña
+    const [claseNotificacion, setClaseNotificacion] = useState('notificacion-resena-inactiva');
+
+    const [solicitudesNotificacion, setSolicitudesNotificacion] = useState([]);
+    const cargarSolicitudResenas = () => {
+        axios
+            .get(`http://localhost:3000/api/resenas?idCalificador=${decoded.id}`)
+            .then((response) => {
+                setSolicitudesNotificacion(response.data);
+            })
+            .catch((error) => {
+                console.error('Error al obtener datos: ', error);
+            });
+    };
+
+    const verificarSolicitudes = () => {
+        if (solicitudesNotificacion.length > 0) {
+            setClaseNotificacion('notificacion-resena-activa');
+        } else {
+            setClaseNotificacion('notificacion-resena-inactiva');
+        }
+    };
+  
+    useEffect(() => {
+        cargarSolicitudResenas();
+    }, []);
+
+    useEffect(() => {
+        verificarSolicitudes();
+    }, [solicitudesNotificacion]);
 
     return (
         <>
@@ -66,7 +98,7 @@ function Perfil() {
                     <div className='tarjeta-perfil-header'>
                         <p className='perfil-nombre'>{user.nombre && user.apellido ? user.nombre + ' ' + user.apellido: ' '}</p>
                         <div id='perfil-promedio-resena'>
-                            <span>2.5/5</span><FontAwesomeIcon icon={faStar} style={{color: "#ffd500",}} id="icono-resena"/>
+                            <span>{resenasRecuperadas.length > 0 ? promedio : "-"}/5</span><FontAwesomeIcon icon={faStar} style={{color: "#ffd500",}} id="icono-resena"/>
                         </div>
                     </div>
                     <div className='tarjeta-perfil-body'>
@@ -92,7 +124,7 @@ function Perfil() {
                                 <div className='item-informacion'>
                                     <FontAwesomeIcon icon={faLocationDot} id="icono-ubicacion"/><span> {user.localidad && user.apellido ? user.localidad.nombre + ', ' + user.localidad.provincia.nombre: ' '} </span>
                                 </div>
-                                <button onClick={abrirModalListaSolicitudes}>VER SOLICITUDES DE RESEÑA</button>
+                                <button onClick={abrirModalListaSolicitudes}><div className={claseNotificacion}></div>VER SOLICITUDES DE RESEÑA</button>
                             </div>
                         </div>
                     </div>
@@ -105,17 +137,17 @@ function Perfil() {
                 </div>
 
                 <div  id='contenedor-resenas'>
-                        {resenasRecuperadas.map((resena) => (
+                        {resenasRecuperadas.length > 0 ? resenasRecuperadas.map((resena) => (
                             <Resena
-                                resenadorProp={resena.calificador.nombre + ' ' + resena.calificador.apellido}
+                                resenadorProp={resena.calificador.nombre}
                                 fechaProp={resena.fecha}
                                 descripcionProp={resena.descripcion}
                                 calificacionProp={resena.calificacion}
                             />
-                        ))}
+                        )): <p>No hay reseñas para mostrar</p>}     
                 </div>
                 {/* MODAL lista de solicitudes */}
-                {modalListaSolicitudes && (<SolicitudesResenia closeModal={cerrarModalListaSolicitudes}/>)}
+                {modalListaSolicitudes && (<SolicitudesResenia closeModal={cerrarModalListaSolicitudes} idCalificadorProp={decoded.id}/>)}
             </main>
             <Footer/>
         </>

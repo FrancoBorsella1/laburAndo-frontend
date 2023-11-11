@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Header.css";
 import axios from "axios";
 
-function Header({ onAbrirModal, onCambioFiltro }) {
+function HeaderHome({ onCambioFiltro }) {
   const [servicios, setServicios] = useState([]);
   const [provincias, setProvincias] = useState([]);
   const [localidades, setLocalidades] = useState([]);
@@ -14,7 +16,7 @@ function Header({ onAbrirModal, onCambioFiltro }) {
 
   useEffect(() => {
     axios
-      .get(`http://200.58.106.151:3000/api/servicio`, config)
+      .get(`http://localhost:3000/api/servicio`, config)
       .then((response) => {
         setServicios(response.data.servicios);
       })
@@ -22,7 +24,7 @@ function Header({ onAbrirModal, onCambioFiltro }) {
         console.error(error);
       });
     axios
-      .get(`http://200.58.106.151:3000/api/provincia`, config)
+      .get(`http://localhost:3000/api/provincia`, config)
       .then((response) => {
         setProvincias(response.data.provincias);
       })
@@ -38,7 +40,7 @@ function Header({ onAbrirModal, onCambioFiltro }) {
 
     axios
       .get(
-        `http://200.58.106.151:3000/api/localidadesxprovincia/${nuevaProvinciaSeleccionada}`,
+        `http://localhost:3000/api/localidadesxprovincia/${nuevaProvinciaSeleccionada}`,
         config
       )
       .then((response) => {
@@ -69,20 +71,17 @@ function Header({ onAbrirModal, onCambioFiltro }) {
     onCambioFiltro(filtros);
   }
 
+  //Recargar página para limpiar los filtros
+  function recargarPagina() {
+    window.location.reload();
+  }
 
   // --------------------------------------------------------------------------------------------
 
   return (
     <header id="componente-header">
-      <div className="contenedor-publicacion">
-        <p>¿Estás buscando un servicio?</p>
-        <button className="publicacion" onClick={onAbrirModal}>
-          Creá una publicación...
-        </button>
-      </div>
-      <div className="linea-vertical"></div>
       <div className="contenedor-busqueda">
-        <p>¿Estás buscando un trabajo?</p>
+        <p>Encontrá tu próximo laburo</p>
         <form className="formulario-busqueda" onSubmit={handleEnviarFiltros}>
           <select 
             name="Servicio"
@@ -127,10 +126,15 @@ function Header({ onAbrirModal, onCambioFiltro }) {
             ))}
           </select>
           <button type="submit">Buscar</button>
+          <button id="boton-recargar" type="button" onClick={recargarPagina}>
+            <FontAwesomeIcon
+              icon={faRotateRight}
+            />
+          </button>
         </form>
       </div>
     </header>
   );
 }
 
-export default Header;
+export default HeaderHome;

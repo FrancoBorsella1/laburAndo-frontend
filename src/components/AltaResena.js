@@ -6,7 +6,7 @@ import "../styles/modal.css";
 import jwtDecode from "jwt-decode"; 
 import axios from "axios";
 
-function AltaResena({ closeModal }) {
+function AltaResena({ cargarSolicitudResenas, closeModal , idReseniaPendienteProp }) {
 
     //Variables de estado para controlar el estado de la reseña
     const [resena, setResena] = useState([]);
@@ -29,24 +29,20 @@ function AltaResena({ closeModal }) {
         const año = fechaActual.getFullYear();
         const mes = (fechaActual.getMonth() + 1).toString().padStart(2, '0'); 
         const dia = fechaActual.getDate().toString().padStart(2, '0'); 
-    
         const fechaPublicacionActual = `${año}/${mes}/${dia}`;
 
         const resenaPersistir = {
+            id: idReseniaPendienteProp,
             fecha: fechaPublicacionActual,
             calificacion: calificacionSeleccionada,
-            idCalificador: decoded.id,
-            idCalificado: 1, //Hardcoded
             descripcion: resena.descripcion
         }
+        console.log("pendiente: ", idReseniaPendienteProp)
 
         try {
             const response = await axios
-            .post(
-                "http://200.58.106.151:3000/api/resenas",
-                resenaPersistir,
-                config
-            );
+            .put(
+                "http://localhost:3000/api/resenas", resenaPersistir );
             console.log("Reseña persistida correctamente", response.data)
         } catch (error) {
             console.error("Error en el alta de la reseña", error);
@@ -71,6 +67,7 @@ function AltaResena({ closeModal }) {
             fecha: "",
         });
         setCalificacionSeleccionada("");
+        cargarSolicitudResenas();
         closeModal(true);
     }
 

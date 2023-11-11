@@ -6,7 +6,7 @@
     flex-direction: column;   
 }
     #contenedor-home .home-linea-resultados{
-        width: 100%;
+        width: 900px;
         height: 60px;
         display: flex;
         justify-content: center;
@@ -17,9 +17,12 @@
     #contenedor-home .home-publicaciones{
         flex: 100%;
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 30px 15px;
+        grid-gap: 30px;
         justify-items: center;
+    }
+    #contenedor-home .home-publicaciones .home-publicacion{
+        display: flex;
+        flex-direction: row;
     }
 
 /* --------- Generales: más de 1 elemento --------- */

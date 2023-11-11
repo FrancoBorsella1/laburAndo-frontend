@@ -2,17 +2,24 @@
 
 /* Genéricos */
 
-#componente-header button,#componente-header select {width: 150px;}
+#componente-header button,#componente-header select {
+    width: 150px;
+    margin: 0 5px;
+}
 #componente-header select, #componente-header input{
     cursor: pointer;
     padding-left: 12px;
-    margin-right: 5px;
+    width: 170px;
 }
 #componente-header p {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
+    text-align: center;
 }
-#componente-header button {cursor: pointer;}
+#componente-header button {
+    cursor: pointer;
+    margin: 0, 5px;
+}
 #componente-header option {
     border: none;
     border-radius: 50px;
@@ -30,7 +37,7 @@
 
 #componente-header .contenedor-publicacion, #componente-header .contenedor-busqueda{
     height: 100%;
-    width: 550px;
+    width: 700px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -56,6 +63,7 @@
     margin-top: 20px;
     box-shadow: none;
 }
+
 #componente-header .formulario-busqueda {
     display: flex;
     flex-direction: row;
@@ -69,4 +77,9 @@
     font-weight: 100;
     text-align: left;
     padding-left: 15px;
+}
+
+#componente-header #boton-recargar {
+    max-width: 45px;
+    background-color: var(--inactive);
 }

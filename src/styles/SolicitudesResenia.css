@@ -67,3 +67,11 @@
     background-color: rgb(194, 0, 0);
     color: white;
 }
+
+#lista-solicitudes #mensaje {
+    text-align: center;
+}
+
+#lista-solicitudes a {
+    margin-right: 18px;
+}
